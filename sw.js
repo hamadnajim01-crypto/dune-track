@@ -1,20 +1,21 @@
 // DuneTrack PRO - Service Worker
-const CACHE_NAME = 'dunetrack-v2';
-const ASSETS_TO_CACHE = [
-    '/',
-    '/index.html',
-    '/style.css',
-    '/app.js',
-    '/manifest.json',
-    '/icon-192.png',
-    '/icon-512.png',
-];
+const CACHE_NAME = 'dunetrack-v3';
 
-// Install: cache all static assets
+// Install: cache all static assets using relative paths
 self.addEventListener('install', (event) => {
+    const base = self.registration.scope;
+    const assets = [
+        '',
+        'index.html',
+        'style.css',
+        'app.js',
+        'manifest.json',
+        'icon-192.png',
+        'icon-512.png',
+    ];
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
-            return cache.addAll(ASSETS_TO_CACHE);
+            return cache.addAll(assets.map(a => new URL(a, base).href));
         })
     );
     self.skipWaiting();
