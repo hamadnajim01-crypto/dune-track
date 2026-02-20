@@ -5,7 +5,154 @@
 
 // ---- PWA SERVICE WORKER ----
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js').catch(() => {});
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+}
+
+// ---- MULTI-LANGUAGE TRANSLATIONS ----
+const TRANSLATIONS = {
+    en: {
+        onb_welcome_title: "Welcome to DuneTrack",
+        onb_welcome_desc: "The ultimate sandboarding analytics app. Track your rides, measure your speed, and conquer the dunes like a pro.",
+        onb_tracking_title: "Real-Time GPS Tracking",
+        onb_tracking_desc: "Track your speed, distance, and duration in real-time using your phone's GPS. See your live speed gauge and beat your records.",
+        onb_sensors_title: "Smart Sensors",
+        onb_sensors_desc: "Connect your sandboard sensor via Bluetooth or use your phone's built-in accelerometer and gyroscope for tilt, airtime, and acceleration data.",
+        onb_analytics_title: "Analytics & Achievements",
+        onb_analytics_desc: "View detailed ride history, personal records, performance trends, and unlock achievements as you improve.",
+        onb_eco_title: "Weather & Eco Tracker",
+        onb_eco_desc: "Real-time desert weather conditions, eco-friendly riding score, and environmental zone guides. Ride responsibly and protect our beautiful dunes.",
+        onb_feat_speed: "Live Speed", onb_feat_distance: "Distance", onb_feat_duration: "Duration",
+        onb_feat_bluetooth: "Bluetooth", onb_feat_tilt: "Tilt Angle", onb_feat_airtime: "Airtime",
+        onb_feat_records: "Records", onb_feat_trends: "Trends", onb_feat_achieve: "Achievements",
+        onb_feat_weather: "Weather", onb_feat_eco: "Eco Score", onb_feat_zones: "Zones",
+        onb_skip: "Skip", onb_next: "Next", onb_getstarted: "Get Started"
+    },
+    ar: {
+        onb_welcome_title: "\u0645\u0631\u062D\u0628\u0627\u064B \u0628\u0643 \u0641\u064A DuneTrack",
+        onb_welcome_desc: "\u062A\u0637\u0628\u064A\u0642 \u062A\u062D\u0644\u064A\u0644\u0627\u062A \u0627\u0644\u062A\u0632\u0644\u062C \u0639\u0644\u0649 \u0627\u0644\u0631\u0645\u0627\u0644. \u062A\u062A\u0628\u0639 \u0631\u062D\u0644\u0627\u062A\u0643\u060C \u0642\u0633 \u0633\u0631\u0639\u062A\u0643\u060C \u0648\u0627\u0642\u0647\u0631 \u0627\u0644\u0643\u062B\u0628\u0627\u0646 \u0643\u0627\u0644\u0645\u062D\u062A\u0631\u0641\u064A\u0646.",
+        onb_tracking_title: "\u062A\u062A\u0628\u0639 GPS \u0641\u064A \u0627\u0644\u0648\u0642\u062A \u0627\u0644\u0641\u0639\u0644\u064A",
+        onb_tracking_desc: "\u062A\u062A\u0628\u0639 \u0633\u0631\u0639\u062A\u0643 \u0648\u0645\u0633\u0627\u0641\u062A\u0643 \u0648\u0645\u062F\u062A\u0643 \u0641\u064A \u0627\u0644\u0648\u0642\u062A \u0627\u0644\u0641\u0639\u0644\u064A \u0628\u0627\u0633\u062A\u062E\u062F\u0627\u0645 GPS \u0647\u0627\u062A\u0641\u0643.",
+        onb_sensors_title: "\u0623\u062C\u0647\u0632\u0629 \u0627\u0633\u062A\u0634\u0639\u0627\u0631 \u0630\u0643\u064A\u0629",
+        onb_sensors_desc: "\u0627\u0631\u0628\u0637 \u0645\u0633\u062A\u0634\u0639\u0631 \u0644\u0648\u062D \u0627\u0644\u062A\u0632\u0644\u062C \u0639\u0628\u0631 \u0627\u0644\u0628\u0644\u0648\u062A\u0648\u062B \u0623\u0648 \u0627\u0633\u062A\u062E\u062F\u0645 \u0645\u0633\u062A\u0634\u0639\u0631\u0627\u062A \u0647\u0627\u062A\u0641\u0643 \u0644\u0644\u0645\u064A\u0644 \u0648\u0627\u0644\u062A\u0633\u0627\u0631\u0639.",
+        onb_analytics_title: "\u0627\u0644\u062A\u062D\u0644\u064A\u0644\u0627\u062A \u0648\u0627\u0644\u0625\u0646\u062C\u0627\u0632\u0627\u062A",
+        onb_analytics_desc: "\u0639\u0631\u0636 \u0633\u062C\u0644 \u0627\u0644\u0631\u062D\u0644\u0627\u062A \u0648\u0627\u0644\u0623\u0631\u0642\u0627\u0645 \u0627\u0644\u0642\u064A\u0627\u0633\u064A\u0629 \u0648\u0627\u062A\u062C\u0627\u0647\u0627\u062A \u0627\u0644\u0623\u062F\u0627\u0621 \u0648\u0641\u062A\u062D \u0627\u0644\u0625\u0646\u062C\u0627\u0632\u0627\u062A.",
+        onb_eco_title: "\u0627\u0644\u0637\u0642\u0633 \u0648\u0627\u0644\u0628\u064A\u0626\u0629",
+        onb_eco_desc: "\u0638\u0631\u0648\u0641 \u0627\u0644\u0637\u0642\u0633 \u0627\u0644\u0635\u062D\u0631\u0627\u0648\u064A\u0629 \u0648\u0646\u0642\u0627\u0637 \u0627\u0644\u0628\u064A\u0626\u0629 \u0648\u0623\u062F\u0644\u0629 \u0627\u0644\u0645\u0646\u0627\u0637\u0642. \u0627\u0631\u0643\u0628 \u0628\u0645\u0633\u0624\u0648\u0644\u064A\u0629.",
+        onb_feat_speed: "\u0627\u0644\u0633\u0631\u0639\u0629", onb_feat_distance: "\u0627\u0644\u0645\u0633\u0627\u0641\u0629", onb_feat_duration: "\u0627\u0644\u0645\u062F\u0629",
+        onb_feat_bluetooth: "\u0628\u0644\u0648\u062A\u0648\u062B", onb_feat_tilt: "\u0632\u0627\u0648\u064A\u0629 \u0627\u0644\u0645\u064A\u0644", onb_feat_airtime: "\u0632\u0645\u0646 \u0627\u0644\u0637\u064A\u0631\u0627\u0646",
+        onb_feat_records: "\u0623\u0631\u0642\u0627\u0645 \u0642\u064A\u0627\u0633\u064A\u0629", onb_feat_trends: "\u0627\u0644\u0627\u062A\u062C\u0627\u0647\u0627\u062A", onb_feat_achieve: "\u0625\u0646\u062C\u0627\u0632\u0627\u062A",
+        onb_feat_weather: "\u0627\u0644\u0637\u0642\u0633", onb_feat_eco: "\u0646\u0642\u0627\u0637 \u0628\u064A\u0626\u064A\u0629", onb_feat_zones: "\u0627\u0644\u0645\u0646\u0627\u0637\u0642",
+        onb_skip: "\u062A\u062E\u0637\u064A", onb_next: "\u0627\u0644\u062A\u0627\u0644\u064A", onb_getstarted: "\u0627\u0628\u062F\u0623 \u0627\u0644\u0622\u0646"
+    },
+    fr: {
+        onb_welcome_title: "Bienvenue sur DuneTrack",
+        onb_welcome_desc: "L'application ultime d'analyse de sandboard. Suivez vos sessions, mesurez votre vitesse et dominez les dunes comme un pro.",
+        onb_tracking_title: "Suivi GPS en Temps R\u00E9el",
+        onb_tracking_desc: "Suivez votre vitesse, distance et dur\u00E9e en temps r\u00E9el avec le GPS de votre t\u00E9l\u00E9phone.",
+        onb_sensors_title: "Capteurs Intelligents",
+        onb_sensors_desc: "Connectez votre capteur de planche via Bluetooth ou utilisez l'acc\u00E9l\u00E9rom\u00E8tre et le gyroscope int\u00E9gr\u00E9s de votre t\u00E9l\u00E9phone.",
+        onb_analytics_title: "Analyses et Succ\u00E8s",
+        onb_analytics_desc: "Historique d\u00E9taill\u00E9 des sessions, records personnels, tendances de performance et d\u00E9bloquez des succ\u00E8s.",
+        onb_eco_title: "M\u00E9t\u00E9o et \u00C9co-Tracker",
+        onb_eco_desc: "Conditions m\u00E9t\u00E9o du d\u00E9sert en temps r\u00E9el, score \u00E9cologique et guides des zones environnementales.",
+        onb_feat_speed: "Vitesse", onb_feat_distance: "Distance", onb_feat_duration: "Dur\u00E9e",
+        onb_feat_bluetooth: "Bluetooth", onb_feat_tilt: "Inclinaison", onb_feat_airtime: "Vol",
+        onb_feat_records: "Records", onb_feat_trends: "Tendances", onb_feat_achieve: "Succ\u00E8s",
+        onb_feat_weather: "M\u00E9t\u00E9o", onb_feat_eco: "Score \u00C9co", onb_feat_zones: "Zones",
+        onb_skip: "Passer", onb_next: "Suivant", onb_getstarted: "Commencer"
+    },
+    es: {
+        onb_welcome_title: "Bienvenido a DuneTrack",
+        onb_welcome_desc: "La app definitiva de sandboarding. Rastrea tus sesiones, mide tu velocidad y conquista las dunas como un profesional.",
+        onb_tracking_title: "Rastreo GPS en Tiempo Real",
+        onb_tracking_desc: "Rastrea tu velocidad, distancia y duraci\u00F3n en tiempo real usando el GPS de tu tel\u00E9fono.",
+        onb_sensors_title: "Sensores Inteligentes",
+        onb_sensors_desc: "Conecta tu sensor de tabla por Bluetooth o usa el aceler\u00F3metro y giroscopio de tu tel\u00E9fono.",
+        onb_analytics_title: "An\u00E1lisis y Logros",
+        onb_analytics_desc: "Historial detallado de sesiones, r\u00E9cords personales, tendencias de rendimiento y desbloquea logros.",
+        onb_eco_title: "Clima y Eco-Tracker",
+        onb_eco_desc: "Condiciones clim\u00E1ticas del desierto en tiempo real, puntuaci\u00F3n ecol\u00F3gica y gu\u00EDas de zonas ambientales.",
+        onb_feat_speed: "Velocidad", onb_feat_distance: "Distancia", onb_feat_duration: "Duraci\u00F3n",
+        onb_feat_bluetooth: "Bluetooth", onb_feat_tilt: "Inclinaci\u00F3n", onb_feat_airtime: "Vuelo",
+        onb_feat_records: "R\u00E9cords", onb_feat_trends: "Tendencias", onb_feat_achieve: "Logros",
+        onb_feat_weather: "Clima", onb_feat_eco: "Eco Score", onb_feat_zones: "Zonas",
+        onb_skip: "Omitir", onb_next: "Siguiente", onb_getstarted: "Empezar"
+    },
+    hi: {
+        onb_welcome_title: "DuneTrack \u092E\u0947\u0902 \u0938\u094D\u0935\u093E\u0917\u0924 \u0939\u0948",
+        onb_welcome_desc: "\u0938\u0948\u0902\u0921\u092C\u094B\u0930\u094D\u0921\u093F\u0902\u0917 \u090F\u0928\u093E\u0932\u093F\u091F\u093F\u0915\u094D\u0938 \u0905\u0928\u0941\u092A\u094D\u0930\u092F\u094B\u0917\u0964 \u0905\u092A\u0928\u0940 \u0930\u093E\u0907\u0921 \u091F\u094D\u0930\u0948\u0915 \u0915\u0930\u0947\u0902, \u0917\u0924\u093F \u092E\u093E\u092A\u0947\u0902 \u0914\u0930 \u091F\u0940\u0932\u094B\u0902 \u092A\u0930 \u0935\u093F\u091C\u092F \u092A\u0930\u093E\u092A\u094D\u0924 \u0915\u0930\u0947\u0902\u0964",
+        onb_tracking_title: "\u0930\u093F\u092F\u0932-\u091F\u093E\u0907\u092E GPS \u091F\u094D\u0930\u0948\u0915\u093F\u0902\u0917",
+        onb_tracking_desc: "\u0905\u092A\u0928\u0947 \u092B\u094B\u0928 \u0915\u0947 GPS \u0938\u0947 \u0930\u093F\u092F\u0932-\u091F\u093E\u0907\u092E \u092E\u0947\u0902 \u0917\u0924\u093F, \u0926\u0942\u0930\u0940 \u0914\u0930 \u0938\u092E\u092F \u091F\u094D\u0930\u0948\u0915 \u0915\u0930\u0947\u0902\u0964",
+        onb_sensors_title: "\u0938\u094D\u092E\u093E\u0930\u094D\u091F \u0938\u0947\u0902\u0938\u0930",
+        onb_sensors_desc: "\u092C\u094D\u0932\u0942\u091F\u0942\u0925 \u0938\u0947 \u0915\u0928\u0947\u0915\u094D\u091F \u0915\u0930\u0947\u0902 \u092F\u093E \u090F\u0915\u094D\u0938\u0947\u0932\u0947\u0930\u094B\u092E\u0940\u091F\u0930 \u0914\u0930 \u091C\u093E\u092F\u0930\u094B\u0938\u094D\u0915\u094B\u092A \u0915\u093E \u0909\u092A\u092F\u094B\u0917 \u0915\u0930\u0947\u0902\u0964",
+        onb_analytics_title: "\u090F\u0928\u093E\u0932\u093F\u091F\u093F\u0915\u094D\u0938 \u0914\u0930 \u0909\u092A\u0932\u092C\u094D\u0927\u093F\u092F\u093E\u0901",
+        onb_analytics_desc: "\u0935\u093F\u0938\u094D\u0924\u0943\u0924 \u0930\u093E\u0907\u0921 \u0907\u0924\u093F\u0939\u093E\u0938, \u0930\u093F\u0915\u0949\u0930\u094D\u0921, \u0930\u0941\u091D\u093E\u0928 \u0914\u0930 \u0909\u092A\u0932\u092C\u094D\u0927\u093F\u092F\u093E\u0901 \u0905\u0928\u0932\u0949\u0915 \u0915\u0930\u0947\u0902\u0964",
+        onb_eco_title: "\u092E\u094C\u0938\u092E \u0914\u0930 \u0908\u0915\u094B \u091F\u094D\u0930\u0948\u0915\u0930",
+        onb_eco_desc: "\u0930\u093F\u092F\u0932-\u091F\u093E\u0907\u092E \u0930\u0947\u0917\u093F\u0938\u094D\u0924\u093E\u0928 \u092E\u094C\u0938\u092E, \u0908\u0915\u094B \u0938\u094D\u0915\u094B\u0930 \u0914\u0930 \u092A\u0930\u094D\u092F\u093E\u0935\u0930\u0923 \u091C\u094B\u0928 \u0917\u093E\u0907\u0921\u0964",
+        onb_feat_speed: "\u0917\u0924\u093F", onb_feat_distance: "\u0926\u0942\u0930\u0940", onb_feat_duration: "\u0938\u092E\u092F",
+        onb_feat_bluetooth: "\u092C\u094D\u0932\u0942\u091F\u0942\u0925", onb_feat_tilt: "\u091D\u0941\u0915\u093E\u0935", onb_feat_airtime: "\u0909\u0921\u093C\u093E\u0928",
+        onb_feat_records: "\u0930\u093F\u0915\u0949\u0930\u094D\u0921", onb_feat_trends: "\u0930\u0941\u091D\u093E\u0928", onb_feat_achieve: "\u0909\u092A\u0932\u092C\u094D\u0927\u093F",
+        onb_feat_weather: "\u092E\u094C\u0938\u092E", onb_feat_eco: "\u0908\u0915\u094B", onb_feat_zones: "\u091C\u094B\u0928",
+        onb_skip: "\u091B\u094B\u0921\u093C\u0947\u0902", onb_next: "\u0905\u0917\u0932\u093E", onb_getstarted: "\u0936\u0941\u0930\u0942 \u0915\u0930\u0947\u0902"
+    }
+};
+
+let currentLang = 'en';
+let currentSlide = 0;
+const TOTAL_SLIDES = 5;
+
+function setLang(lang) {
+    currentLang = lang;
+    document.querySelectorAll('.onb-lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+    // RTL for Arabic
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    // Update all translatable elements
+    const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (t[key]) el.textContent = t[key];
+    });
+    localStorage.setItem('dunetrack_lang', lang);
+}
+
+function nextSlide() {
+    if (currentSlide >= TOTAL_SLIDES - 1) {
+        skipOnboarding();
+        return;
+    }
+    const slides = document.querySelectorAll('.onb-slide');
+    const dots = document.querySelectorAll('.onb-dot');
+    slides[currentSlide].classList.remove('active');
+    slides[currentSlide].classList.add('exit-left');
+    currentSlide++;
+    slides[currentSlide].classList.remove('exit-left');
+    slides[currentSlide].classList.add('active');
+    dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+    // On last slide change button text
+    const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
+    if (currentSlide === TOTAL_SLIDES - 1) {
+        document.getElementById('onb-next-text').textContent = t.onb_getstarted || 'Get Started';
+        document.getElementById('onb-skip').style.visibility = 'hidden';
+    }
+    // Remove exit-left after animation
+    setTimeout(() => {
+        slides.forEach(s => { if (!s.classList.contains('active')) s.classList.remove('exit-left'); });
+    }, 500);
+}
+
+function skipOnboarding() {
+    document.getElementById('onboarding').classList.remove('active');
+    localStorage.setItem('dunetrack_onboarded', '1');
+    showAuthScreen();
+}
+
+function showOnboarding() {
+    document.getElementById('onboarding').classList.add('active');
+    // Load saved language
+    const savedLang = localStorage.getItem('dunetrack_lang');
+    if (savedLang && TRANSLATIONS[savedLang]) {
+        setLang(savedLang);
+    }
 }
 
 // ---- AUTH STATE ----
@@ -325,8 +472,11 @@ window.addEventListener('load', () => {
                 if (checkAuth()) {
                     // Already logged in - go straight to app
                     enterApp();
+                } else if (!localStorage.getItem('dunetrack_onboarded')) {
+                    // First time user - show onboarding
+                    showOnboarding();
                 } else {
-                    // Not logged in - show auth screen
+                    // Returning user, not logged in - show auth screen
                     showAuthScreen();
                 }
             }, 400);

@@ -6,12 +6,12 @@
     <title>DuneTrack PRO - Sandboarding Analytics</title>
 
     <!-- PWA -->
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#FFD700">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="DuneTrack">
-    <link rel="apple-touch-icon" href="/icon-192.png">
+    <link rel="apple-touch-icon" href="icon-192.png">
     <meta name="description" content="Pro Sandboarding Analytics - Real-time GPS tracking, speed, distance & more">
 
     <link rel="stylesheet" href="style.css">
@@ -33,6 +33,130 @@
             <h1 class="splash-title">DUNE<span>TRACK</span></h1>
             <p class="splash-sub">PRO SANDBOARDING ANALYTICS</p>
             <div class="splash-loader"><div class="splash-bar"></div></div>
+        </div>
+    </div>
+
+    <!-- Onboarding Screens -->
+    <div id="onboarding" class="onboarding">
+        <!-- Language Selector -->
+        <div class="onb-lang-bar">
+            <button class="onb-lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+            <button class="onb-lang-btn" data-lang="ar" onclick="setLang('ar')">AR</button>
+            <button class="onb-lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
+            <button class="onb-lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
+            <button class="onb-lang-btn" data-lang="hi" onclick="setLang('hi')">HI</button>
+        </div>
+
+        <!-- Slides -->
+        <div class="onb-slides" id="onb-slides">
+            <!-- Slide 1: Welcome -->
+            <div class="onb-slide active" data-slide="0">
+                <div class="onb-slide-img">
+                    <img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800&q=80" alt="Desert Dunes">
+                    <div class="onb-img-gradient"></div>
+                </div>
+                <div class="onb-slide-content">
+                    <div class="onb-logo">
+                        <svg viewBox="0 0 80 30" width="50" height="18">
+                            <path d="M5 20 Q40 0 75 20" stroke="url(#onbGrad)" stroke-width="4" fill="none" stroke-linecap="round"/>
+                            <defs><linearGradient id="onbGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#FFD700"/><stop offset="100%" stop-color="#FF6B35"/></linearGradient></defs>
+                        </svg>
+                        <span class="onb-brand">DUNE<span>TRACK</span></span>
+                    </div>
+                    <h2 class="onb-title" data-i18n="onb_welcome_title">Welcome to DuneTrack</h2>
+                    <p class="onb-desc" data-i18n="onb_welcome_desc">The ultimate sandboarding analytics app. Track your rides, measure your speed, and conquer the dunes like a pro.</p>
+                </div>
+            </div>
+
+            <!-- Slide 2: Live Tracking -->
+            <div class="onb-slide" data-slide="1">
+                <div class="onb-slide-img">
+                    <img src="https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?w=800&q=80" alt="Sand Dune Sunset">
+                    <div class="onb-img-gradient"></div>
+                </div>
+                <div class="onb-slide-content">
+                    <div class="onb-feature-icon">&#x1F3C3;</div>
+                    <h2 class="onb-title" data-i18n="onb_tracking_title">Real-Time GPS Tracking</h2>
+                    <p class="onb-desc" data-i18n="onb_tracking_desc">Track your speed, distance, and duration in real-time using your phone's GPS. See your live speed gauge and beat your records.</p>
+                    <div class="onb-features">
+                        <div class="onb-feat"><span>&#x26A1;</span><span data-i18n="onb_feat_speed">Live Speed</span></div>
+                        <div class="onb-feat"><span>&#x1F4CF;</span><span data-i18n="onb_feat_distance">Distance</span></div>
+                        <div class="onb-feat"><span>&#x23F1;</span><span data-i18n="onb_feat_duration">Duration</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Sensors & Bluetooth -->
+            <div class="onb-slide" data-slide="2">
+                <div class="onb-slide-img">
+                    <img src="https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?w=800&q=80" alt="Desert Adventure">
+                    <div class="onb-img-gradient"></div>
+                </div>
+                <div class="onb-slide-content">
+                    <div class="onb-feature-icon">&#x1F4F1;</div>
+                    <h2 class="onb-title" data-i18n="onb_sensors_title">Smart Sensors</h2>
+                    <p class="onb-desc" data-i18n="onb_sensors_desc">Connect your sandboard sensor via Bluetooth or use your phone's built-in accelerometer and gyroscope for tilt, airtime, and acceleration data.</p>
+                    <div class="onb-features">
+                        <div class="onb-feat"><span>&#x1F4F6;</span><span data-i18n="onb_feat_bluetooth">Bluetooth</span></div>
+                        <div class="onb-feat"><span>&#x1F4D0;</span><span data-i18n="onb_feat_tilt">Tilt Angle</span></div>
+                        <div class="onb-feat"><span>&#x1F680;</span><span data-i18n="onb_feat_airtime">Airtime</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4: Analytics & Achievements -->
+            <div class="onb-slide" data-slide="3">
+                <div class="onb-slide-img">
+                    <img src="https://images.unsplash.com/photo-1504803900752-c2051699d0e8?w=800&q=80" alt="Desert Sky">
+                    <div class="onb-img-gradient"></div>
+                </div>
+                <div class="onb-slide-content">
+                    <div class="onb-feature-icon">&#x1F4CA;</div>
+                    <h2 class="onb-title" data-i18n="onb_analytics_title">Analytics & Achievements</h2>
+                    <p class="onb-desc" data-i18n="onb_analytics_desc">View detailed ride history, personal records, performance trends, and unlock achievements as you improve. Track your progress over weeks and months.</p>
+                    <div class="onb-features">
+                        <div class="onb-feat"><span>&#x1F3C6;</span><span data-i18n="onb_feat_records">Records</span></div>
+                        <div class="onb-feat"><span>&#x1F4C8;</span><span data-i18n="onb_feat_trends">Trends</span></div>
+                        <div class="onb-feat"><span>&#x1F31F;</span><span data-i18n="onb_feat_achieve">Achievements</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 5: Weather & Eco -->
+            <div class="onb-slide" data-slide="4">
+                <div class="onb-slide-img">
+                    <img src="https://images.unsplash.com/photo-1542401886-65d6c61db217?w=800&q=80" alt="Desert Weather">
+                    <div class="onb-img-gradient"></div>
+                </div>
+                <div class="onb-slide-content">
+                    <div class="onb-feature-icon">&#x1F30D;</div>
+                    <h2 class="onb-title" data-i18n="onb_eco_title">Weather & Eco Tracker</h2>
+                    <p class="onb-desc" data-i18n="onb_eco_desc">Real-time desert weather conditions, eco-friendly riding score, and environmental zone guides. Ride responsibly and protect our beautiful dunes.</p>
+                    <div class="onb-features">
+                        <div class="onb-feat"><span>&#x2600;&#xFE0F;</span><span data-i18n="onb_feat_weather">Weather</span></div>
+                        <div class="onb-feat"><span>&#x1F33F;</span><span data-i18n="onb_feat_eco">Eco Score</span></div>
+                        <div class="onb-feat"><span>&#x1F5FA;</span><span data-i18n="onb_feat_zones">Zones</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dots -->
+        <div class="onb-dots" id="onb-dots">
+            <span class="onb-dot active" data-dot="0"></span>
+            <span class="onb-dot" data-dot="1"></span>
+            <span class="onb-dot" data-dot="2"></span>
+            <span class="onb-dot" data-dot="3"></span>
+            <span class="onb-dot" data-dot="4"></span>
+        </div>
+
+        <!-- Navigation -->
+        <div class="onb-nav">
+            <button class="onb-skip" id="onb-skip" onclick="skipOnboarding()" data-i18n="onb_skip">Skip</button>
+            <button class="onb-next-btn" id="onb-next" onclick="nextSlide()">
+                <span id="onb-next-text" data-i18n="onb_next">Next</span>
+                <span class="onb-arrow">&#x2192;</span>
+            </button>
         </div>
     </div>
 
