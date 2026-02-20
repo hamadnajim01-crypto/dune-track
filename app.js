@@ -1471,6 +1471,7 @@ function initScanButton() {
 let landingMap = null;
 let appMap = null;
 let appMapMarker = null;
+let appMapAccCircle = null;
 let appMapWatchId = null;
 
 // UAE sandboarding locations
@@ -1517,30 +1518,62 @@ function initLandingMap() {
             .bindPopup(`<strong>${loc.name}</strong><br>${loc.area} &middot; ${loc.level}`);
     });
 
-    // Try to show user's position
+    // Show user's real-time position on landing map
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
+        let landingUserMarker = null;
+        let landingUserCircle = null;
+
+        navigator.geolocation.watchPosition(
             (pos) => {
+                const lat = pos.coords.latitude;
+                const lon = pos.coords.longitude;
+                const acc = pos.coords.accuracy;
+
                 const userIcon = L.divIcon({
                     className: 'custom-map-marker',
-                    html: '<div style="width:14px;height:14px;background:#00BFFF;border-radius:50%;border:3px solid #fff;box-shadow:0 0 12px rgba(0,191,255,0.6);"></div>',
-                    iconSize: [14, 14],
-                    iconAnchor: [7, 7],
-                    popupAnchor: [0, -10],
+                    html: '<div style="width:18px;height:18px;background:#00BFFF;border-radius:50%;border:3px solid #fff;box-shadow:0 0 16px rgba(0,191,255,0.8),0 0 40px rgba(0,191,255,0.3);animation:blePulse 2s infinite;"></div>',
+                    iconSize: [18, 18],
+                    iconAnchor: [9, 9],
+                    popupAnchor: [0, -12],
                 });
-                L.marker([pos.coords.latitude, pos.coords.longitude], { icon: userIcon })
-                    .addTo(landingMap)
-                    .bindPopup('<strong>You are here</strong>');
+
+                if (landingUserMarker) {
+                    landingUserMarker.setLatLng([lat, lon]);
+                    if (landingUserCircle) landingUserCircle.setLatLng([lat, lon]).setRadius(acc);
+                } else {
+                    landingUserMarker = L.marker([lat, lon], { icon: userIcon })
+                        .addTo(landingMap)
+                        .bindPopup('<strong>You are here</strong><br>Live GPS position')
+                        .openPopup();
+                    // Add accuracy circle
+                    landingUserCircle = L.circle([lat, lon], {
+                        radius: acc,
+                        color: '#00BFFF',
+                        fillColor: '#00BFFF',
+                        fillOpacity: 0.08,
+                        weight: 1,
+                        opacity: 0.3,
+                    }).addTo(landingMap);
+                }
             },
-            () => {} // Fail silently
+            (err) => {
+                console.log('Landing map GPS error:', err.message);
+            },
+            { enableHighAccuracy: true, maximumAge: 5000, timeout: 15000 }
         );
     }
 }
 
 function initAppMap() {
     const container = document.getElementById('app-map');
-    if (!container || appMap) return;
+    if (!container) return;
     if (typeof L === 'undefined') return;
+
+    // If map already exists, just refresh it
+    if (appMap) {
+        appMap.invalidateSize();
+        return;
+    }
 
     // Default to Dubai center
     appMap = L.map('app-map', {
@@ -1557,38 +1590,68 @@ function initAppMap() {
 
     const hintEl = document.getElementById('map-hint');
 
-    // Watch user position
-    if (navigator.geolocation) {
-        appMapWatchId = navigator.geolocation.watchPosition(
-            (pos) => {
-                const lat = pos.coords.latitude;
-                const lon = pos.coords.longitude;
-                const acc = pos.coords.accuracy;
-
-                if (appMapMarker) {
-                    appMapMarker.setLatLng([lat, lon]);
-                } else {
-                    const userIcon = L.divIcon({
-                        className: 'custom-map-marker',
-                        html: '<div style="width:16px;height:16px;background:#00BFFF;border-radius:50%;border:3px solid #fff;box-shadow:0 0 14px rgba(0,191,255,0.7);animation:blePulse 2s infinite;"></div>',
-                        iconSize: [16, 16],
-                        iconAnchor: [8, 8],
-                    });
-                    appMapMarker = L.marker([lat, lon], { icon: userIcon }).addTo(appMap);
-                    appMap.setView([lat, lon], 14);
-                }
-
-                if (hintEl) {
-                    hintEl.textContent = `GPS active — accuracy: ${Math.round(acc)}m`;
-                    hintEl.style.color = 'rgba(0,191,255,0.6)';
-                }
-            },
-            (err) => {
-                if (hintEl) hintEl.textContent = 'Location unavailable — enable GPS to see your position';
-            },
-            { enableHighAccuracy: true, maximumAge: 3000, timeout: 10000 }
-        );
+    if (!navigator.geolocation) {
+        if (hintEl) hintEl.textContent = 'Your browser does not support GPS. Try using Chrome or Safari.';
+        return;
     }
+
+    if (hintEl) {
+        hintEl.textContent = 'Requesting GPS access...';
+        hintEl.style.color = '#FFD700';
+    }
+
+    // Watch user position with high accuracy
+    appMapWatchId = navigator.geolocation.watchPosition(
+        (pos) => {
+            const lat = pos.coords.latitude;
+            const lon = pos.coords.longitude;
+            const acc = pos.coords.accuracy;
+
+            if (appMapMarker) {
+                appMapMarker.setLatLng([lat, lon]);
+                if (appMapAccCircle) appMapAccCircle.setLatLng([lat, lon]).setRadius(acc);
+            } else {
+                const userIcon = L.divIcon({
+                    className: 'custom-map-marker',
+                    html: '<div style="width:18px;height:18px;background:#00BFFF;border-radius:50%;border:3px solid #fff;box-shadow:0 0 16px rgba(0,191,255,0.8),0 0 40px rgba(0,191,255,0.3);animation:blePulse 2s infinite;"></div>',
+                    iconSize: [18, 18],
+                    iconAnchor: [9, 9],
+                    popupAnchor: [0, -12],
+                });
+                appMapMarker = L.marker([lat, lon], { icon: userIcon })
+                    .addTo(appMap)
+                    .bindPopup('<strong>You are here</strong><br>Live GPS tracking active');
+                // Add accuracy circle
+                appMapAccCircle = L.circle([lat, lon], {
+                    radius: acc,
+                    color: '#00BFFF',
+                    fillColor: '#00BFFF',
+                    fillOpacity: 0.08,
+                    weight: 1,
+                    opacity: 0.3,
+                }).addTo(appMap);
+                appMap.setView([lat, lon], 15);
+            }
+
+            if (hintEl) {
+                hintEl.innerHTML = `<strong style="color:#00BFFF;">GPS Active</strong> — Accuracy: ${Math.round(acc)}m | Lat: ${lat.toFixed(5)}, Lon: ${lon.toFixed(5)}`;
+                hintEl.style.color = 'rgba(0,191,255,0.7)';
+            }
+        },
+        (err) => {
+            if (hintEl) {
+                if (err.code === 1) {
+                    hintEl.innerHTML = '<strong style="color:#FF6B35;">Location blocked</strong> — Tap the lock icon in your browser address bar and allow Location access, then reload.';
+                } else if (err.code === 2) {
+                    hintEl.innerHTML = '<strong style="color:#FF6B35;">GPS unavailable</strong> — Make sure your device GPS is turned on in system settings.';
+                } else {
+                    hintEl.innerHTML = '<strong style="color:#FF6B35;">GPS timeout</strong> — Go outside for better satellite reception and try again.';
+                }
+                hintEl.style.color = 'rgba(255,107,53,0.7)';
+            }
+        },
+        { enableHighAccuracy: true, maximumAge: 3000, timeout: 15000 }
+    );
 }
 
 // Initialize landing map when landing page is shown

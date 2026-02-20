@@ -452,6 +452,7 @@
                 <p class="land-section-subtitle" data-i18n="land_map_desc">From Al Badayer to Liwa, discover the best sandboarding locations. The map shows popular riding spots and your live GPS position.</p>
                 <!-- Interactive Leaflet Map -->
                 <div id="landing-map" class="leaflet-map-container"></div>
+                <p class="map-hint" id="landing-map-hint" style="text-align:center;font-size:12px;color:rgba(0,191,255,0.5);margin:8px 0 16px;font-family:'Inter',sans-serif;">Blue dot = your live GPS position. Allow location access when prompted.</p>
                 <div class="land-locations-grid land-locations-below">
                     <div class="land-location">
                         <span class="land-loc-icon">&#x1F3DC;&#xFE0F;</span>
@@ -1191,92 +1192,6 @@
                 </button>
             </section>
 
-            <!-- ====== PRE-RIDE SAFETY BRIEFING OVERLAY ====== -->
-            <div class="safety-overlay" id="safety-overlay" style="display:none;">
-                <div class="safety-modal">
-                    <div class="safety-modal-header">
-                        <div class="safety-modal-icon">&#x1F6E1;&#xFE0F;</div>
-                        <h2>Pre-Ride Safety Briefing</h2>
-                        <p>Review these safety guidelines before you start riding. Your safety is our top priority.</p>
-                    </div>
-
-                    <div class="safety-checklist" id="safety-checklist">
-                        <label class="safety-check-item">
-                            <input type="checkbox" class="safety-checkbox" onchange="updateSafetyProgress()">
-                            <span class="safety-check-mark"></span>
-                            <div class="safety-check-info">
-                                <strong>&#x1F4F1; Phone Charged Above 20%</strong>
-                                <span>Your phone's GPS and sensors use battery. Make sure you have enough charge for your session. Bring a portable battery pack if possible.</span>
-                            </div>
-                        </label>
-
-                        <label class="safety-check-item">
-                            <input type="checkbox" class="safety-checkbox" onchange="updateSafetyProgress()">
-                            <span class="safety-check-mark"></span>
-                            <div class="safety-check-info">
-                                <strong>&#x1F4A7; Carrying Water (2+ Liters)</strong>
-                                <span>The UAE desert can reach extreme temperatures. Dehydration is the #1 risk. Always carry at least 2 liters of water per person, even for short sessions.</span>
-                            </div>
-                        </label>
-
-                        <label class="safety-check-item">
-                            <input type="checkbox" class="safety-checkbox" onchange="updateSafetyProgress()">
-                            <span class="safety-check-mark"></span>
-                            <div class="safety-check-info">
-                                <strong>&#x2600;&#xFE0F; Wearing Sun Protection</strong>
-                                <span>Apply SPF 50+ sunscreen. Wear UV-protective sunglasses and a hat. The UV index in the UAE desert can exceed 11 during peak hours.</span>
-                            </div>
-                        </label>
-
-                        <label class="safety-check-item">
-                            <input type="checkbox" class="safety-checkbox" onchange="updateSafetyProgress()">
-                            <span class="safety-check-mark"></span>
-                            <div class="safety-check-info">
-                                <strong>&#x1F9E2; Wearing Helmet & Protection</strong>
-                                <span>A helmet protects against head injuries from falls. Knee pads, elbow pads, and gloves are strongly recommended, especially for beginners.</span>
-                            </div>
-                        </label>
-
-                        <label class="safety-check-item">
-                            <input type="checkbox" class="safety-checkbox" onchange="updateSafetyProgress()">
-                            <span class="safety-check-mark"></span>
-                            <div class="safety-check-info">
-                                <strong>&#x1F465; Someone Knows Your Location</strong>
-                                <span>Always tell a friend or family member where you're riding and when you plan to return. Share your live GPS position if possible.</span>
-                            </div>
-                        </label>
-
-                        <label class="safety-check-item">
-                            <input type="checkbox" class="safety-checkbox" onchange="updateSafetyProgress()">
-                            <span class="safety-check-mark"></span>
-                            <div class="safety-check-info">
-                                <strong>&#x1F697; Vehicle Parked on Hard Ground</strong>
-                                <span>Never park on soft sand — your car can sink. Use a 4WD vehicle, deflate tires for desert driving, and re-inflate before returning to the road.</span>
-                            </div>
-                        </label>
-                    </div>
-
-                    <div class="safety-progress-bar">
-                        <div class="safety-progress-fill" id="safety-progress-fill" style="width:0%"></div>
-                    </div>
-                    <p class="safety-progress-text" id="safety-progress-text">Check all 6 items to continue (0/6)</p>
-
-                    <div class="safety-weather-warn" id="safety-weather-warn">
-                        <span class="safety-warn-icon">&#x1F321;&#xFE0F;</span>
-                        <span id="safety-weather-msg">Checking current desert conditions...</span>
-                    </div>
-
-                    <div class="safety-modal-actions">
-                        <button class="safety-btn-skip" onclick="closeSafetyBriefing(false)">Go Back</button>
-                        <button class="safety-btn-start" id="safety-start-btn" disabled onclick="closeSafetyBriefing(true)">
-                            <span>&#x25B6;</span> I'm Ready — Start Ride
-                        </button>
-                    </div>
-
-                    <p class="safety-disclaimer">DuneTrack is a tracking tool, not a safety device. Always exercise personal judgment and follow local regulations. Ride at your own risk.</p>
-                </div>
-            </div>
-
             <!-- HISTORY SCREEN -->
             <section id="screen-history" class="tab-screen">
                 <div class="section-header"><h3>Ride History</h3><span class="section-badge" id="total-rides-badge">0 rides</span></div>
@@ -1614,6 +1529,92 @@
         <!-- Mobile Sidebar Overlay -->
         <div class="sidebar-overlay" onclick="toggleMobileMenu()"></div>
     </div><!-- /.app -->
+
+    <!-- ====== PRE-RIDE SAFETY BRIEFING OVERLAY (body level for proper z-index) ====== -->
+    <div class="safety-overlay" id="safety-overlay" style="display:none;">
+        <div class="safety-modal">
+            <div class="safety-modal-header">
+                <div class="safety-modal-icon">&#x1F6E1;&#xFE0F;</div>
+                <h2>Pre-Ride Safety Briefing</h2>
+                <p>Review these safety guidelines before you start riding. Your safety is our top priority.</p>
+            </div>
+
+            <div class="safety-checklist" id="safety-checklist">
+                <label class="safety-check-item">
+                    <input type="checkbox" class="safety-checkbox" onchange="updateSafetyProgress()">
+                    <span class="safety-check-mark"></span>
+                    <div class="safety-check-info">
+                        <strong>&#x1F4F1; Phone Charged Above 20%</strong>
+                        <span>Your phone's GPS and sensors use battery. Make sure you have enough charge for your session. Bring a portable battery pack if possible.</span>
+                    </div>
+                </label>
+
+                <label class="safety-check-item">
+                    <input type="checkbox" class="safety-checkbox" onchange="updateSafetyProgress()">
+                    <span class="safety-check-mark"></span>
+                    <div class="safety-check-info">
+                        <strong>&#x1F4A7; Carrying Water (2+ Liters)</strong>
+                        <span>The UAE desert can reach extreme temperatures. Dehydration is the #1 risk. Always carry at least 2 liters of water per person, even for short sessions.</span>
+                    </div>
+                </label>
+
+                <label class="safety-check-item">
+                    <input type="checkbox" class="safety-checkbox" onchange="updateSafetyProgress()">
+                    <span class="safety-check-mark"></span>
+                    <div class="safety-check-info">
+                        <strong>&#x2600;&#xFE0F; Wearing Sun Protection</strong>
+                        <span>Apply SPF 50+ sunscreen. Wear UV-protective sunglasses and a hat. The UV index in the UAE desert can exceed 11 during peak hours.</span>
+                    </div>
+                </label>
+
+                <label class="safety-check-item">
+                    <input type="checkbox" class="safety-checkbox" onchange="updateSafetyProgress()">
+                    <span class="safety-check-mark"></span>
+                    <div class="safety-check-info">
+                        <strong>&#x1F9E2; Wearing Helmet & Protection</strong>
+                        <span>A helmet protects against head injuries from falls. Knee pads, elbow pads, and gloves are strongly recommended, especially for beginners.</span>
+                    </div>
+                </label>
+
+                <label class="safety-check-item">
+                    <input type="checkbox" class="safety-checkbox" onchange="updateSafetyProgress()">
+                    <span class="safety-check-mark"></span>
+                    <div class="safety-check-info">
+                        <strong>&#x1F465; Someone Knows Your Location</strong>
+                        <span>Always tell a friend or family member where you're riding and when you plan to return. Share your live GPS position if possible.</span>
+                    </div>
+                </label>
+
+                <label class="safety-check-item">
+                    <input type="checkbox" class="safety-checkbox" onchange="updateSafetyProgress()">
+                    <span class="safety-check-mark"></span>
+                    <div class="safety-check-info">
+                        <strong>&#x1F697; Vehicle Parked on Hard Ground</strong>
+                        <span>Never park on soft sand — your car can sink. Use a 4WD vehicle, deflate tires for desert driving, and re-inflate before returning to the road.</span>
+                    </div>
+                </label>
+            </div>
+
+            <div class="safety-progress-bar">
+                <div class="safety-progress-fill" id="safety-progress-fill" style="width:0%"></div>
+            </div>
+            <p class="safety-progress-text" id="safety-progress-text">Check all 6 items to continue (0/6)</p>
+
+            <div class="safety-weather-warn" id="safety-weather-warn">
+                <span class="safety-warn-icon">&#x1F321;&#xFE0F;</span>
+                <span id="safety-weather-msg">Checking current desert conditions...</span>
+            </div>
+
+            <div class="safety-modal-actions">
+                <button class="safety-btn-skip" onclick="closeSafetyBriefing(false)">Go Back</button>
+                <button class="safety-btn-start" id="safety-start-btn" disabled onclick="closeSafetyBriefing(true)">
+                    <span>&#x25B6;</span> I'm Ready — Start Ride
+                </button>
+            </div>
+
+            <p class="safety-disclaimer">DuneTrack is a tracking tool, not a safety device. Always exercise personal judgment and follow local regulations. Ride at your own risk.</p>
+        </div>
+    </div>
 
     <script src="app.js"></script>
 </body>
