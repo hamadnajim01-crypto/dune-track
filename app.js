@@ -181,6 +181,7 @@ function showOnboarding() {
     document.getElementById('landing').classList.add('active');
     const savedLang = localStorage.getItem('dunetrack_lang');
     if (savedLang && TRANSLATIONS[savedLang]) setLang(savedLang);
+    tryInitLandingMap();
 }
 
 // ---- AUTH STATE ----
@@ -938,6 +939,14 @@ function switchTab(tabName) {
     document.getElementById('screen-container').scrollTop = 0;
     requestAnimationFrame(() => { screen.style.opacity = '1'; });
     closeMobileMenu();
+
+    // Initialize app map when Eco Tracker tab is opened
+    if (tabName === 'map') {
+        setTimeout(() => {
+            initAppMap();
+            if (appMap) appMap.invalidateSize();
+        }, 200);
+    }
 }
 
 // ============================================
@@ -1381,4 +1390,137 @@ function initScanButton() {
     const scanBtn = document.getElementById('scan-btn');
     if (!scanBtn) return;
     scanBtn.addEventListener('click', scanBluetooth);
+}
+
+// ============================================
+// LEAFLET MAPS
+// ============================================
+let landingMap = null;
+let appMap = null;
+let appMapMarker = null;
+let appMapWatchId = null;
+
+// UAE sandboarding locations
+const UAE_LOCATIONS = [
+    { name: 'Al Badayer (Big Red)', lat: 25.1478, lon: 55.8118, level: 'Beginner to Advanced', area: 'Sharjah' },
+    { name: 'Liwa Oasis Dunes', lat: 23.1317, lon: 53.7785, level: 'Expert', area: 'Abu Dhabi' },
+    { name: 'Fossil Rock', lat: 25.1120, lon: 55.8542, level: 'Intermediate', area: 'Sharjah' },
+    { name: 'Mleiha Desert', lat: 25.1333, lon: 55.8833, level: 'All Levels', area: 'Sharjah' },
+    { name: 'Lahbab Desert', lat: 24.9200, lon: 55.4150, level: 'Beginner Friendly', area: 'Dubai' },
+    { name: 'Al Ain Desert', lat: 24.2075, lon: 55.7447, level: 'Intermediate', area: 'Abu Dhabi' },
+];
+
+function initLandingMap() {
+    const container = document.getElementById('landing-map');
+    if (!container || landingMap) return;
+    if (typeof L === 'undefined') return;
+
+    // Center on UAE
+    landingMap = L.map('landing-map', {
+        center: [24.5, 55.0],
+        zoom: 7,
+        scrollWheelZoom: false,
+        attributionControl: true,
+    });
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap',
+        maxZoom: 18,
+    }).addTo(landingMap);
+
+    // Gold marker icon
+    const goldIcon = L.divIcon({
+        className: 'custom-map-marker',
+        html: '<div style="width:16px;height:16px;background:linear-gradient(135deg,#FFD700,#FF6B35);border-radius:50%;border:2px solid #fff;box-shadow:0 2px 8px rgba(255,215,0,0.5);"></div>',
+        iconSize: [16, 16],
+        iconAnchor: [8, 8],
+        popupAnchor: [0, -10],
+    });
+
+    // Add location markers
+    UAE_LOCATIONS.forEach(loc => {
+        L.marker([loc.lat, loc.lon], { icon: goldIcon })
+            .addTo(landingMap)
+            .bindPopup(`<strong>${loc.name}</strong><br>${loc.area} &middot; ${loc.level}`);
+    });
+
+    // Try to show user's position
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (pos) => {
+                const userIcon = L.divIcon({
+                    className: 'custom-map-marker',
+                    html: '<div style="width:14px;height:14px;background:#00BFFF;border-radius:50%;border:3px solid #fff;box-shadow:0 0 12px rgba(0,191,255,0.6);"></div>',
+                    iconSize: [14, 14],
+                    iconAnchor: [7, 7],
+                    popupAnchor: [0, -10],
+                });
+                L.marker([pos.coords.latitude, pos.coords.longitude], { icon: userIcon })
+                    .addTo(landingMap)
+                    .bindPopup('<strong>You are here</strong>');
+            },
+            () => {} // Fail silently
+        );
+    }
+}
+
+function initAppMap() {
+    const container = document.getElementById('app-map');
+    if (!container || appMap) return;
+    if (typeof L === 'undefined') return;
+
+    // Default to Dubai center
+    appMap = L.map('app-map', {
+        center: [25.2048, 55.2708],
+        zoom: 12,
+        scrollWheelZoom: true,
+        attributionControl: true,
+    });
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap',
+        maxZoom: 18,
+    }).addTo(appMap);
+
+    const hintEl = document.getElementById('map-hint');
+
+    // Watch user position
+    if (navigator.geolocation) {
+        appMapWatchId = navigator.geolocation.watchPosition(
+            (pos) => {
+                const lat = pos.coords.latitude;
+                const lon = pos.coords.longitude;
+                const acc = pos.coords.accuracy;
+
+                if (appMapMarker) {
+                    appMapMarker.setLatLng([lat, lon]);
+                } else {
+                    const userIcon = L.divIcon({
+                        className: 'custom-map-marker',
+                        html: '<div style="width:16px;height:16px;background:#00BFFF;border-radius:50%;border:3px solid #fff;box-shadow:0 0 14px rgba(0,191,255,0.7);animation:blePulse 2s infinite;"></div>',
+                        iconSize: [16, 16],
+                        iconAnchor: [8, 8],
+                    });
+                    appMapMarker = L.marker([lat, lon], { icon: userIcon }).addTo(appMap);
+                    appMap.setView([lat, lon], 14);
+                }
+
+                if (hintEl) {
+                    hintEl.textContent = `GPS active — accuracy: ${Math.round(acc)}m`;
+                    hintEl.style.color = 'rgba(0,191,255,0.6)';
+                }
+            },
+            (err) => {
+                if (hintEl) hintEl.textContent = 'Location unavailable — enable GPS to see your position';
+            },
+            { enableHighAccuracy: true, maximumAge: 3000, timeout: 10000 }
+        );
+    }
+}
+
+// Initialize landing map when landing page is shown
+function tryInitLandingMap() {
+    if (document.getElementById('landing')?.classList.contains('active')) {
+        setTimeout(initLandingMap, 500);
+    }
 }

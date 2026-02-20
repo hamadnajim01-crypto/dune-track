@@ -16,6 +16,9 @@
 
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Leaflet.js for interactive maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
     <!-- Splash/Loading -->
@@ -185,6 +188,29 @@
             </div>
         </section>
 
+        <!-- ====== ABOUT DUNETRACK (Detailed) ====== -->
+        <section class="land-section">
+            <div class="land-section-inner">
+                <div class="land-section-tag">About DuneTrack</div>
+                <h2 class="land-section-title">The Story Behind DuneTrack</h2>
+                <p class="land-section-subtitle">Born from a passion for desert adventure and cutting-edge technology, DuneTrack was created to bring data-driven performance tracking to the sandboarding community.</p>
+                <div class="land-about-content">
+                    <div class="land-about-block">
+                        <h3>Why We Built This</h3>
+                        <p>Sandboarding in the UAE desert is an incredible experience, but until now there was no way to track your performance. Surfers have wave data, skiers have slope apps, cyclists have Strava — sandboarders had nothing. DuneTrack fills that gap by using your phone's built-in GPS, accelerometer, and gyroscope sensors to capture every detail of your ride. No expensive gear needed — just your phone and your board.</p>
+                    </div>
+                    <div class="land-about-block">
+                        <h3>How It Works</h3>
+                        <p>DuneTrack is a Progressive Web App (PWA) that runs directly in your browser — no app store download required. When you start a session, it activates your phone's GPS for real-time speed and distance tracking, the accelerometer for measuring G-forces and detecting airtime, and the gyroscope for tilt angle data. If you have a Bluetooth-enabled sandboard sensor, DuneTrack connects to it wirelessly for even more precise measurements. All your ride data is saved locally on your device, so your privacy is always protected.</p>
+                    </div>
+                    <div class="land-about-block">
+                        <h3>Built for UAE Desert</h3>
+                        <p>DuneTrack is purpose-built for the UAE desert environment. It pulls real-time weather data from the Open-Meteo API for locations like Al Badayer, Liwa, and Fossil Rock, giving you temperature, wind speed, humidity, and UV index before you head out. The Eco Tracker feature helps you ride responsibly by scoring your environmental impact and guiding you to designated safe zones, protecting the delicate desert ecosystem for future generations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- ====== HOW IT WORKS (ROADMAP) ====== -->
         <section class="land-section" id="land-roadmap">
             <div class="land-section-inner">
@@ -304,15 +330,14 @@
         </section>
 
         <!-- ====== DESERT MAP / LOCATIONS ====== -->
-        <section class="land-map-section">
-            <div class="land-map-img">
-                <img src="https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?w=1920&q=80" alt="Desert Landscape UAE">
-                <div class="land-map-overlay"></div>
-            </div>
-            <div class="land-map-content">
-                <h2 data-i18n="land_map_title">Explore UAE Desert Dunes</h2>
-                <p data-i18n="land_map_desc">From Al Badayer to Liwa, discover the best sandboarding locations with live desert weather conditions and riding zone guides.</p>
-                <div class="land-locations-grid">
+        <section class="land-section" id="land-map-explore">
+            <div class="land-section-inner">
+                <div class="land-section-tag">Live Map</div>
+                <h2 class="land-section-title" data-i18n="land_map_title">Explore UAE Desert Dunes</h2>
+                <p class="land-section-subtitle" data-i18n="land_map_desc">From Al Badayer to Liwa, discover the best sandboarding locations. The map shows popular riding spots and your live GPS position.</p>
+                <!-- Interactive Leaflet Map -->
+                <div id="landing-map" class="leaflet-map-container"></div>
+                <div class="land-locations-grid land-locations-below">
                     <div class="land-location">
                         <span class="land-loc-icon">&#x1F3DC;&#xFE0F;</span>
                         <div>
@@ -342,7 +367,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="land-map-stats">
+                <div class="land-map-stats land-map-stats-center">
                     <div class="land-mstat"><span>GPS</span><span data-i18n="land_mstat3">Route Tracking</span></div>
                     <div class="land-mstat"><span>24/7</span><span data-i18n="land_mstat2">Live Weather</span></div>
                     <div class="land-mstat"><span>UAE</span><span>Desert Zones</span></div>
@@ -502,6 +527,90 @@
                         <div class="land-device-icon">&#x1F4F2;</div>
                         <h4>Tablet</h4>
                         <p>iPad or Android tablet. Perfect for reviewing detailed ride analytics.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== SAFETY TIPS ====== -->
+        <section class="land-section">
+            <div class="land-section-inner">
+                <div class="land-section-tag land-tag-orange">Safety First</div>
+                <h2 class="land-section-title">Desert Safety Tips</h2>
+                <p class="land-section-subtitle">Sandboarding is an extreme sport. Follow these guidelines to stay safe while enjoying the dunes.</p>
+                <div class="land-safety-grid">
+                    <div class="land-safety-card">
+                        <span class="land-safety-icon">&#x1F4A7;</span>
+                        <h4>Stay Hydrated</h4>
+                        <p>Bring at least 2 liters of water per person. The desert heat can dehydrate you quickly, especially during physical activity. Drink water regularly even if you don't feel thirsty.</p>
+                    </div>
+                    <div class="land-safety-card">
+                        <span class="land-safety-icon">&#x2600;&#xFE0F;</span>
+                        <h4>Sun Protection</h4>
+                        <p>Apply SPF 50+ sunscreen, wear UV-protective sunglasses, and consider lightweight long sleeves. The UV index in the UAE desert can exceed 11 during peak hours.</p>
+                    </div>
+                    <div class="land-safety-card">
+                        <span class="land-safety-icon">&#x23F0;</span>
+                        <h4>Best Riding Times</h4>
+                        <p>Ride during early morning (6-9 AM) or late afternoon (4-6 PM) to avoid extreme heat. The sand temperature can exceed 70°C at midday, which is dangerous for exposed skin.</p>
+                    </div>
+                    <div class="land-safety-card">
+                        <span class="land-safety-icon">&#x1F6E1;&#xFE0F;</span>
+                        <h4>Wear Protection</h4>
+                        <p>Always wear a helmet and protective eyewear. Sand can cause abrasions and eye injuries at high speed. Knee pads and gloves are recommended for beginners.</p>
+                    </div>
+                    <div class="land-safety-card">
+                        <span class="land-safety-icon">&#x1F4F1;</span>
+                        <h4>Tell Someone</h4>
+                        <p>Always inform someone of your riding location and expected return time. Keep your phone charged and bring a portable battery pack. DuneTrack's GPS works offline once loaded.</p>
+                    </div>
+                    <div class="land-safety-card">
+                        <span class="land-safety-icon">&#x1F697;</span>
+                        <h4>Vehicle Access</h4>
+                        <p>Park your vehicle on hard ground, never on soft sand. If driving into the desert, use a 4WD vehicle with proper tires. Deflate tires for better desert traction and re-inflate before returning to roads.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== FAQ ====== -->
+        <section class="land-section land-dark" id="land-faq">
+            <div class="land-section-inner">
+                <div class="land-section-tag">FAQ</div>
+                <h2 class="land-section-title">Frequently Asked Questions</h2>
+                <p class="land-section-subtitle">Everything you need to know about DuneTrack.</p>
+                <div class="land-faq-list">
+                    <div class="land-faq-item">
+                        <h4>Is DuneTrack really free?</h4>
+                        <p>Yes, completely free. No premium tiers, no ads, no subscriptions. All features are available from day one. We built DuneTrack as a passion project for the sandboarding community.</p>
+                    </div>
+                    <div class="land-faq-item">
+                        <h4>Do I need to download anything from the App Store?</h4>
+                        <p>No. DuneTrack is a Progressive Web App (PWA). Just open the website in your browser and tap "Add to Home Screen" to install it. It works like a native app but without the app store.</p>
+                    </div>
+                    <div class="land-faq-item">
+                        <h4>Does it work without internet in the desert?</h4>
+                        <p>Yes. Once loaded, DuneTrack works offline using service worker caching. GPS tracking, speed measurement, and all sensor data work without internet. Weather updates require a connection.</p>
+                    </div>
+                    <div class="land-faq-item">
+                        <h4>What devices are supported?</h4>
+                        <p>Any device with a modern browser. iPhone (iOS 13+), Android phones, tablets, and desktops. For best results, use Chrome on Android or Safari on iPhone. GPS and sensor features require a phone.</p>
+                    </div>
+                    <div class="land-faq-item">
+                        <h4>Do I need the Bluetooth sensor?</h4>
+                        <p>No. The Bluetooth sandboard sensor is optional and provides extra precision for acceleration and tilt data. Your phone's built-in GPS and accelerometer provide all the core tracking features.</p>
+                    </div>
+                    <div class="land-faq-item">
+                        <h4>Is my data private?</h4>
+                        <p>Absolutely. All your ride data is stored locally on your device using localStorage. Nothing is sent to any server. Your account information stays on your device too. You can export or delete your data anytime from Settings.</p>
+                    </div>
+                    <div class="land-faq-item">
+                        <h4>How accurate is the GPS speed tracking?</h4>
+                        <p>GPS accuracy depends on your device and conditions. In open desert with clear sky, accuracy is typically within 1-3 km/h. DuneTrack uses high-accuracy GPS mode and filters out noise to give reliable readings.</p>
+                    </div>
+                    <div class="land-faq-item">
+                        <h4>Can I use DuneTrack outside the UAE?</h4>
+                        <p>Yes! While DuneTrack is optimized for UAE desert locations and pulls UAE weather data, the GPS tracking, speed measurement, and sensor features work anywhere in the world.</p>
                     </div>
                 </div>
             </div>
@@ -908,6 +1017,11 @@
                         <p class="eco-img-sub">Ride responsibly in the UAE desert</p>
                     </div>
                 </div>
+                <!-- Live GPS Map -->
+                <div class="section-header"><h3>Your Location</h3><span class="section-badge">&#x1F4CD; Live GPS</span></div>
+                <div id="app-map" class="app-map-container"></div>
+                <p class="map-hint" id="map-hint">Allow location access to see your position on the map</p>
+
                 <div class="section-header"><h3>Eco Tracker</h3><span class="eco-score-badge" id="eco-badge">&#x1F33F; --/100</span></div>
 
                 <!-- Eco Score Card -->
