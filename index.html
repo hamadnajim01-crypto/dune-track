@@ -48,6 +48,7 @@
                 <div class="land-nav-links">
                     <a href="#land-features" class="land-link">Features</a>
                     <a href="#land-board" class="land-link">Smart Board</a>
+                    <a href="#land-how" class="land-link">How It Works</a>
                     <a href="#land-eco" class="land-link">Eco</a>
                     <div class="land-lang-sel">
                         <button class="land-lang active" data-lang="en" onclick="setLang('en')">EN</button>
@@ -61,40 +62,56 @@
             </div>
         </nav>
 
-        <!-- HERO SECTION -->
+        <!-- ====== HERO SECTION ====== -->
         <section class="land-hero">
             <div class="land-hero-bg">
                 <img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=1920&q=80" alt="Desert Dunes">
                 <div class="land-hero-overlay"></div>
             </div>
+            <div class="land-hero-particles">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
             <div class="land-hero-content">
                 <div class="land-hero-badge" data-i18n="land_badge">IoT Sandboarding Analytics</div>
                 <h1 class="land-hero-title">DUNE<span>TRACK</span></h1>
+                <p class="land-hero-tagline">PRO</p>
                 <p class="land-hero-sub" data-i18n="land_hero_sub">Track your speed. Measure your jumps. Conquer the dunes. The ultimate sandboarding companion powered by real-time GPS, smart sensors, and Bluetooth IoT.</p>
                 <div class="land-hero-btns">
                     <button class="land-btn-primary" onclick="skipOnboarding()" data-i18n="land_getstarted">Get Started</button>
                     <a href="#land-features" class="land-btn-secondary" data-i18n="land_explore">Explore Features</a>
                 </div>
-                <div class="land-hero-stats">
-                    <div class="land-hstat"><span class="land-hstat-num">78.9</span><span class="land-hstat-label">km/h Top Speed</span></div>
-                    <div class="land-hstat-div"></div>
-                    <div class="land-hstat"><span class="land-hstat-num">87</span><span class="land-hstat-label">Eco Score</span></div>
-                    <div class="land-hstat-div"></div>
-                    <div class="land-hstat"><span class="land-hstat-num">GPS</span><span class="land-hstat-label">Live Tracking</span></div>
+                <div class="land-hero-techs">
+                    <div class="land-tech-chip"><span>&#x1F6F0;</span> GPS Tracking</div>
+                    <div class="land-tech-chip"><span>&#x1F4F6;</span> Bluetooth 5.0</div>
+                    <div class="land-tech-chip"><span>&#x1F4F1;</span> Phone Sensors</div>
+                    <div class="land-tech-chip"><span>&#x2600;&#xFE0F;</span> Live Weather</div>
                 </div>
+            </div>
+            <div class="land-hero-scroll">
+                <span>Scroll to explore</span>
+                <div class="land-scroll-arrow"></div>
             </div>
         </section>
 
-        <!-- FEATURES SECTION -->
+        <!-- ====== FEATURES SECTION ====== -->
         <section class="land-section" id="land-features">
             <div class="land-section-inner">
                 <div class="land-section-tag" data-i18n="land_feat_tag">What's Inside</div>
                 <h2 class="land-section-title" data-i18n="land_feat_title">Everything You Need to Ride Like a Pro</h2>
+                <p class="land-section-subtitle">DuneTrack combines GPS, Bluetooth IoT sensors, and phone accelerometers into one powerful sandboarding app.</p>
                 <div class="land-features-grid">
-                    <div class="land-feat-card">
+                    <div class="land-feat-card land-feat-highlight">
                         <div class="land-feat-icon">&#x26A1;</div>
                         <h3 data-i18n="land_f1_title">Live Speed Tracking</h3>
                         <p data-i18n="land_f1_desc">Real-time GPS speed gauge showing your current speed, max speed, and distance covered on the dunes.</p>
+                        <div class="land-feat-visual">
+                            <svg viewBox="0 0 200 100" class="land-gauge-mini">
+                                <path d="M20 90 A80 80 0 0 1 180 90" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="8" stroke-linecap="round"/>
+                                <path d="M20 90 A80 80 0 0 1 140 30" fill="none" stroke="url(#miniGaugeGrad)" stroke-width="8" stroke-linecap="round"/>
+                                <defs><linearGradient id="miniGaugeGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#00FF00"/><stop offset="50%" stop-color="#FFD700"/><stop offset="100%" stop-color="#FF4444"/></linearGradient></defs>
+                                <text x="100" y="80" text-anchor="middle" fill="#FFD700" font-family="Orbitron" font-size="22" font-weight="900">km/h</text>
+                            </svg>
+                        </div>
                     </div>
                     <div class="land-feat-card">
                         <div class="land-feat-icon">&#x1F4F6;</div>
@@ -125,7 +142,7 @@
             </div>
         </section>
 
-        <!-- APP PREVIEW - Sandboarder Action -->
+        <!-- ====== ACTION SHOWCASE - Sandboarder ====== -->
         <section class="land-showcase">
             <div class="land-showcase-img">
                 <img src="https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?w=1200&q=80" alt="Sandboarder in action at sunset">
@@ -146,7 +163,38 @@
             </div>
         </section>
 
-        <!-- SMART BOARD SECTION -->
+        <!-- ====== HOW IT WORKS ====== -->
+        <section class="land-section" id="land-how">
+            <div class="land-section-inner">
+                <div class="land-section-tag">How It Works</div>
+                <h2 class="land-section-title">From Setup to Shredding in 3 Steps</h2>
+                <p class="land-section-subtitle">Get started in minutes. No complicated setup. Just sign up, grab your board, and hit the dunes.</p>
+                <div class="land-steps">
+                    <div class="land-step">
+                        <div class="land-step-num">01</div>
+                        <div class="land-step-icon">&#x1F4F1;</div>
+                        <h3>Sign Up &amp; Open App</h3>
+                        <p>Create your free DuneTrack account. Open the app on any device — works on iPhone, Android, tablet, or desktop.</p>
+                    </div>
+                    <div class="land-step-line"></div>
+                    <div class="land-step">
+                        <div class="land-step-num">02</div>
+                        <div class="land-step-icon">&#x1F4F6;</div>
+                        <h3>Connect Your Sensors</h3>
+                        <p>Pair your Bluetooth sandboard sensor for full data, or use your phone's built-in GPS and accelerometer — no extra hardware required.</p>
+                    </div>
+                    <div class="land-step-line"></div>
+                    <div class="land-step">
+                        <div class="land-step-num">03</div>
+                        <div class="land-step-icon">&#x1F3C4;</div>
+                        <h3>Hit the Dunes</h3>
+                        <p>Tap "Start Session" and ride. DuneTrack records your speed, distance, airtime, and tilt angle in real-time. Review your stats after every ride.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== SMART BOARD / IoT SECTION ====== -->
         <section class="land-section land-dark" id="land-board">
             <div class="land-section-inner">
                 <div class="land-split">
@@ -169,7 +217,71 @@
             </div>
         </section>
 
-        <!-- DESERT MAP / LANDSCAPE -->
+        <!-- ====== TECHNOLOGY STACK ====== -->
+        <section class="land-section" id="land-tech">
+            <div class="land-section-inner">
+                <div class="land-section-tag">Technology</div>
+                <h2 class="land-section-title">Built With Cutting-Edge Tech</h2>
+                <p class="land-section-subtitle">DuneTrack uses web-native APIs — no app store download needed. Install it as a PWA directly from your browser.</p>
+                <div class="land-tech-grid">
+                    <div class="land-tech-card">
+                        <div class="land-tech-icon">&#x1F6F0;</div>
+                        <h4>Geolocation API</h4>
+                        <p>High-accuracy GPS tracking for speed and distance using your phone's built-in satellite receiver.</p>
+                    </div>
+                    <div class="land-tech-card">
+                        <div class="land-tech-icon">&#x1F4F6;</div>
+                        <h4>Web Bluetooth</h4>
+                        <p>Connect directly to BLE sensor hardware from the browser — no native app needed.</p>
+                    </div>
+                    <div class="land-tech-card">
+                        <div class="land-tech-icon">&#x1F4F1;</div>
+                        <h4>DeviceMotion API</h4>
+                        <p>Accelerometer, gyroscope, and orientation sensors from your phone's hardware.</p>
+                    </div>
+                    <div class="land-tech-card">
+                        <div class="land-tech-icon">&#x2601;&#xFE0F;</div>
+                        <h4>Open-Meteo API</h4>
+                        <p>Free, real-time weather data for UAE desert conditions — temperature, wind, UV, and humidity.</p>
+                    </div>
+                    <div class="land-tech-card">
+                        <div class="land-tech-icon">&#x1F4E6;</div>
+                        <h4>PWA (Installable)</h4>
+                        <p>Add DuneTrack to your home screen. Works offline with service worker caching.</p>
+                    </div>
+                    <div class="land-tech-card">
+                        <div class="land-tech-icon">&#x1F512;</div>
+                        <h4>Local Storage</h4>
+                        <p>Your ride data stays on your device. Private, fast, and always accessible — even offline.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== APP PREVIEW / WHAT YOU GET ====== -->
+        <section class="land-showcase land-showcase-reverse">
+            <div class="land-showcase-img">
+                <img src="https://images.unsplash.com/photo-1542401886-65d6c61db217?w=1200&q=80" alt="Desert sunset riding">
+                <div class="land-showcase-overlay land-showcase-overlay-right"></div>
+            </div>
+            <div class="land-showcase-content land-showcase-content-right">
+                <div class="land-showcase-text">
+                    <div class="land-section-tag">Full Dashboard</div>
+                    <h2>Everything at a Glance</h2>
+                    <p>Your personal dashboard shows ride history, personal records, weekly performance, weather conditions, achievements, and Bluetooth connection status — all in one clean interface.</p>
+                    <div class="land-dash-preview">
+                        <div class="land-dash-item"><span class="land-dash-icon">&#x1F3E0;</span><span>Dashboard</span></div>
+                        <div class="land-dash-item"><span class="land-dash-icon">&#x1F3C3;</span><span>Live Tracking</span></div>
+                        <div class="land-dash-item"><span class="land-dash-icon">&#x1F4CA;</span><span>Ride History</span></div>
+                        <div class="land-dash-item"><span class="land-dash-icon">&#x1F5FA;</span><span>Eco Tracker</span></div>
+                        <div class="land-dash-item"><span class="land-dash-icon">&#x1F4C8;</span><span>Analytics</span></div>
+                        <div class="land-dash-item"><span class="land-dash-icon">&#x2699;</span><span>Settings</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== DESERT MAP / LOCATIONS ====== -->
         <section class="land-map-section">
             <div class="land-map-img">
                 <img src="https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?w=1920&q=80" alt="Desert Landscape UAE">
@@ -178,15 +290,45 @@
             <div class="land-map-content">
                 <h2 data-i18n="land_map_title">Explore UAE Desert Dunes</h2>
                 <p data-i18n="land_map_desc">From Al Badayer to Liwa, discover the best sandboarding locations with live desert weather conditions and riding zone guides.</p>
+                <div class="land-locations-grid">
+                    <div class="land-location">
+                        <span class="land-loc-icon">&#x1F3DC;&#xFE0F;</span>
+                        <div>
+                            <strong>Al Badayer (Big Red)</strong>
+                            <span>Sharjah &middot; Beginner to Advanced</span>
+                        </div>
+                    </div>
+                    <div class="land-location">
+                        <span class="land-loc-icon">&#x1F3D4;&#xFE0F;</span>
+                        <div>
+                            <strong>Liwa Oasis Dunes</strong>
+                            <span>Abu Dhabi &middot; Expert level</span>
+                        </div>
+                    </div>
+                    <div class="land-location">
+                        <span class="land-loc-icon">&#x26F1;&#xFE0F;</span>
+                        <div>
+                            <strong>Fossil Rock Area</strong>
+                            <span>Sharjah &middot; Intermediate</span>
+                        </div>
+                    </div>
+                    <div class="land-location">
+                        <span class="land-loc-icon">&#x1F305;</span>
+                        <div>
+                            <strong>Mleiha Desert</strong>
+                            <span>Sharjah &middot; All levels</span>
+                        </div>
+                    </div>
+                </div>
                 <div class="land-map-stats">
-                    <div class="land-mstat"><span>5</span><span data-i18n="land_mstat1">Safe Riding Zones</span></div>
-                    <div class="land-mstat"><span>24/7</span><span data-i18n="land_mstat2">Live Weather</span></div>
                     <div class="land-mstat"><span>GPS</span><span data-i18n="land_mstat3">Route Tracking</span></div>
+                    <div class="land-mstat"><span>24/7</span><span data-i18n="land_mstat2">Live Weather</span></div>
+                    <div class="land-mstat"><span>UAE</span><span>Desert Zones</span></div>
                 </div>
             </div>
         </section>
 
-        <!-- ECO SECTION -->
+        <!-- ====== ECO SECTION ====== -->
         <section class="land-section" id="land-eco">
             <div class="land-section-inner">
                 <div class="land-split land-split-reverse">
@@ -202,20 +344,82 @@
                         </div>
                     </div>
                     <div class="land-split-img land-eco-img">
-                        <div class="land-eco-score-ring">
-                            <svg viewBox="0 0 140 140" width="140" height="140">
-                                <circle cx="70" cy="70" r="60" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="10"/>
-                                <circle cx="70" cy="70" r="60" fill="none" stroke="url(#ecoLandGrad)" stroke-width="10" stroke-linecap="round" stroke-dasharray="377" stroke-dashoffset="49" transform="rotate(-90 70 70)"/>
-                                <defs><linearGradient id="ecoLandGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#00FF00"/><stop offset="100%" stop-color="#1abc9c"/></linearGradient></defs>
-                            </svg>
-                            <div class="land-eco-num"><span>87</span><span>/100</span></div>
+                        <div class="land-eco-visual">
+                            <div class="land-eco-shield">&#x1F6E1;&#xFE0F;</div>
+                            <div class="land-eco-ring-anim">
+                                <svg viewBox="0 0 140 140" width="140" height="140">
+                                    <circle cx="70" cy="70" r="60" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="10"/>
+                                    <circle cx="70" cy="70" r="60" fill="none" stroke="url(#ecoLandGrad)" stroke-width="10" stroke-linecap="round" stroke-dasharray="377" stroke-dashoffset="377" transform="rotate(-90 70 70)" class="eco-ring-animate"/>
+                                    <defs><linearGradient id="ecoLandGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#00FF00"/><stop offset="100%" stop-color="#1abc9c"/></linearGradient></defs>
+                                </svg>
+                            </div>
+                            <div class="land-eco-label">Your score updates<br>based on your rides</div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- COMMUNITY / SOCIAL PROOF -->
+        <!-- ====== WHAT RIDERS GET ====== -->
+        <section class="land-section land-dark">
+            <div class="land-section-inner">
+                <div class="land-section-tag">Free Features</div>
+                <h2 class="land-section-title">What You Get</h2>
+                <p class="land-section-subtitle">DuneTrack is completely free. No paywalls, no ads, no premium tiers. Every feature is yours from day one.</p>
+                <div class="land-perks-grid">
+                    <div class="land-perk">
+                        <span class="land-perk-check">&#x2705;</span>
+                        <span>Unlimited ride sessions</span>
+                    </div>
+                    <div class="land-perk">
+                        <span class="land-perk-check">&#x2705;</span>
+                        <span>GPS speed &amp; distance tracking</span>
+                    </div>
+                    <div class="land-perk">
+                        <span class="land-perk-check">&#x2705;</span>
+                        <span>Bluetooth sensor support</span>
+                    </div>
+                    <div class="land-perk">
+                        <span class="land-perk-check">&#x2705;</span>
+                        <span>Accelerometer &amp; tilt data</span>
+                    </div>
+                    <div class="land-perk">
+                        <span class="land-perk-check">&#x2705;</span>
+                        <span>Airtime detection</span>
+                    </div>
+                    <div class="land-perk">
+                        <span class="land-perk-check">&#x2705;</span>
+                        <span>Full ride history &amp; analytics</span>
+                    </div>
+                    <div class="land-perk">
+                        <span class="land-perk-check">&#x2705;</span>
+                        <span>Personal records &amp; achievements</span>
+                    </div>
+                    <div class="land-perk">
+                        <span class="land-perk-check">&#x2705;</span>
+                        <span>Live desert weather (UAE)</span>
+                    </div>
+                    <div class="land-perk">
+                        <span class="land-perk-check">&#x2705;</span>
+                        <span>Eco score &amp; zone maps</span>
+                    </div>
+                    <div class="land-perk">
+                        <span class="land-perk-check">&#x2705;</span>
+                        <span>PWA — install on any device</span>
+                    </div>
+                    <div class="land-perk">
+                        <span class="land-perk-check">&#x2705;</span>
+                        <span>Works offline</span>
+                    </div>
+                    <div class="land-perk">
+                        <span class="land-perk-check">&#x2705;</span>
+                        <span>iPhone &amp; Android support</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== COMMUNITY SECTION (no fake numbers) ====== -->
         <section class="land-community">
             <div class="land-community-bg">
                 <img src="https://images.unsplash.com/photo-1542401886-65d6c61db217?w=1920&q=80" alt="Desert sunset community">
@@ -223,35 +427,95 @@
             </div>
             <div class="land-community-content">
                 <h2 data-i18n="land_community_title">Join the Dune Riders Community</h2>
-                <p data-i18n="land_community_desc">Thousands of sandboarders across the UAE are already tracking their rides, competing for records, and protecting the desert.</p>
-                <div class="land-community-stats">
-                    <div class="land-cstat"><span>1,000+</span><span data-i18n="land_cstat1">Active Riders</span></div>
-                    <div class="land-cstat"><span>50,000+</span><span data-i18n="land_cstat2">Rides Tracked</span></div>
-                    <div class="land-cstat"><span>4.9</span><span data-i18n="land_cstat3">User Rating</span></div>
+                <p class="land-community-tagline">Be part of the growing sandboarding movement in the UAE. Track your rides, set personal records, protect the desert ecosystem, and push your limits on the dunes.</p>
+                <div class="land-community-features">
+                    <div class="land-comm-feat">
+                        <span>&#x1F3C6;</span>
+                        <div>
+                            <strong>Personal Records</strong>
+                            <span>Beat your own best speeds and distances</span>
+                        </div>
+                    </div>
+                    <div class="land-comm-feat">
+                        <span>&#x1F4CA;</span>
+                        <div>
+                            <strong>Track Progress</strong>
+                            <span>See your improvement over time</span>
+                        </div>
+                    </div>
+                    <div class="land-comm-feat">
+                        <span>&#x1F33F;</span>
+                        <div>
+                            <strong>Ride Responsibly</strong>
+                            <span>Eco scoring keeps the dunes pristine</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- FINAL CTA + AUTH -->
+        <!-- ====== DEVICE COMPATIBILITY ====== -->
+        <section class="land-section">
+            <div class="land-section-inner">
+                <div class="land-section-tag">Compatibility</div>
+                <h2 class="land-section-title">Works on Every Device</h2>
+                <p class="land-section-subtitle">DuneTrack is a Progressive Web App. No app store needed — just open it in your browser and add to home screen.</p>
+                <div class="land-devices">
+                    <div class="land-device">
+                        <div class="land-device-icon">&#x1F4F1;</div>
+                        <h4>iPhone</h4>
+                        <p>iOS 13+ with motion sensor permissions. Full GPS and accelerometer support.</p>
+                    </div>
+                    <div class="land-device">
+                        <div class="land-device-icon">&#x1F4F1;</div>
+                        <h4>Android</h4>
+                        <p>Chrome on Android. Full Bluetooth, GPS, and sensor support.</p>
+                    </div>
+                    <div class="land-device">
+                        <div class="land-device-icon">&#x1F4BB;</div>
+                        <h4>Desktop</h4>
+                        <p>Chrome, Edge, or Brave on Windows/Mac. View your analytics on a big screen.</p>
+                    </div>
+                    <div class="land-device">
+                        <div class="land-device-icon">&#x1F4F2;</div>
+                        <h4>Tablet</h4>
+                        <p>iPad or Android tablet. Perfect for reviewing detailed ride analytics.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== FINAL CTA ====== -->
         <section class="land-final-cta">
             <div class="land-final-inner">
+                <div class="land-final-icon">
+                    <svg viewBox="0 0 80 30" width="80" height="30"><path d="M5 20 Q40 0 75 20" stroke="url(#ctaGrad)" stroke-width="4" fill="none" stroke-linecap="round"/><defs><linearGradient id="ctaGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#FFD700"/><stop offset="100%" stop-color="#FF6B35"/></linearGradient></defs></svg>
+                </div>
                 <h2 data-i18n="land_cta_title">Ready to Ride?</h2>
                 <p data-i18n="land_cta_desc">Create your free account and start tracking your sandboarding sessions today.</p>
                 <div class="land-final-btns">
                     <button class="land-btn-primary land-btn-big" onclick="skipOnboarding()" data-i18n="land_cta_signup">Sign Up Free</button>
                     <button class="land-btn-outline" onclick="skipOnboarding()" data-i18n="land_cta_signin">Already have an account? Sign In</button>
                 </div>
+                <p class="land-final-note">Free forever. No credit card. No ads. Just ride.</p>
             </div>
         </section>
 
-        <!-- FOOTER -->
+        <!-- ====== FOOTER ====== -->
         <footer class="land-footer">
             <div class="land-footer-inner">
                 <div class="land-footer-logo">
                     <svg viewBox="0 0 80 30" width="30" height="11"><path d="M5 20 Q40 0 75 20" stroke="url(#ftGrad)" stroke-width="4" fill="none" stroke-linecap="round"/><defs><linearGradient id="ftGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#FFD700"/><stop offset="100%" stop-color="#FF6B35"/></linearGradient></defs></svg>
                     <span>DUNE<span>TRACK</span> PRO</span>
                 </div>
-                <p>Pro Sandboarding Analytics &middot; UAE Desert &middot; IoT Powered</p>
+                <div class="land-footer-links">
+                    <span>IoT Sandboarding Analytics</span>
+                    <span>&middot;</span>
+                    <span>UAE Desert</span>
+                    <span>&middot;</span>
+                    <span>GPS + Bluetooth + Sensors</span>
+                </div>
+                <p class="land-footer-copy">Built with real-time web technology. No fake numbers. All your data is real.</p>
             </div>
         </footer>
     </div>
@@ -633,13 +897,13 @@
                             <defs><linearGradient id="ecoGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#00FF00"/><stop offset="100%" stop-color="#1abc9c"/></linearGradient></defs>
                         </svg>
                         <div class="eco-score-text">
-                            <span class="eco-number">87</span>
+                            <span class="eco-number" id="eco-score-num">--</span>
                             <span class="eco-max">/100</span>
                         </div>
                     </div>
                     <div class="eco-info">
-                        <h3>Excellent Eco Score!</h3>
-                        <p>You're riding responsibly and protecting the desert ecosystem.</p>
+                        <h3 id="eco-score-msg">Start Riding</h3>
+                        <p id="eco-score-desc">Complete rides to build your eco score based on real riding behavior.</p>
                     </div>
                 </div>
 
