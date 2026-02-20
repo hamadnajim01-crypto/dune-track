@@ -25,7 +25,26 @@ const TRANSLATIONS = {
         onb_feat_bluetooth: "Bluetooth", onb_feat_tilt: "Tilt Angle", onb_feat_airtime: "Airtime",
         onb_feat_records: "Records", onb_feat_trends: "Trends", onb_feat_achieve: "Achievements",
         onb_feat_weather: "Weather", onb_feat_eco: "Eco Score", onb_feat_zones: "Zones",
-        onb_skip: "Skip", onb_next: "Next", onb_getstarted: "Get Started"
+        onb_skip: "Skip", onb_next: "Next", onb_getstarted: "Get Started",
+        land_badge: "IoT Sandboarding Analytics", land_hero_sub: "Track your speed. Measure your jumps. Conquer the dunes. The ultimate sandboarding companion powered by real-time GPS, smart sensors, and Bluetooth IoT.",
+        land_getstarted: "Get Started", land_explore: "Explore Features",
+        land_feat_tag: "What's Inside", land_feat_title: "Everything You Need to Ride Like a Pro",
+        land_f1_title: "Live Speed Tracking", land_f1_desc: "Real-time GPS speed gauge showing your current speed, max speed, and distance covered on the dunes.",
+        land_f2_title: "Bluetooth Sensors", land_f2_desc: "Connect your smart sandboard via Bluetooth to get acceleration, tilt angle, and airtime data.",
+        land_f3_title: "Ride Analytics", land_f3_desc: "Full ride history, personal records, weekly trends, and performance charts to track your progress.",
+        land_f4_title: "Achievements", land_f4_desc: "Unlock badges like Speed Demon, Sky Rider, and Dune Master as you improve your skills.",
+        land_f5_title: "Desert Weather", land_f5_desc: "Real-time UAE desert weather, wind speed, humidity, and UV index before you ride.",
+        land_f6_title: "Eco Tracker", land_f6_desc: "Ride responsibly with eco scoring, safe riding zones, and environmental protection guidelines.",
+        land_action_tag: "Real-Time Performance", land_action_title: "Track Every Ride in Real-Time", land_action_desc: "See your speed, distance, and duration update live as you carve down the dunes. The speed gauge fills up as you accelerate, and all data is saved automatically.",
+        land_board_tag: "IoT Hardware", land_board_title: "Smart Sandboard Sensors", land_board_desc: "Our IoT-enabled sandboard comes with built-in accelerometer, gyroscope, and Bluetooth connectivity. Attach the sensor module to any board and get instant data on your phone.",
+        land_spec1_title: "Accelerometer", land_spec1_desc: "Measures G-force and acceleration", land_spec2_title: "Gyroscope", land_spec2_desc: "Tilt angle and board orientation", land_spec3_title: "Bluetooth 5.0", land_spec3_desc: "Low-energy wireless to your phone", land_spec4_title: "Long Battery", land_spec4_desc: "8+ hours of continuous riding",
+        land_map_title: "Explore UAE Desert Dunes", land_map_desc: "From Al Badayer to Liwa, discover the best sandboarding locations with live desert weather conditions and riding zone guides.",
+        land_mstat1: "Safe Riding Zones", land_mstat2: "Live Weather", land_mstat3: "Route Tracking",
+        land_eco_tag: "Protect Our Dunes", land_eco_title: "Ride Responsibly", land_eco_desc: "DuneTrack's Eco Tracker monitors your riding impact and scores your environmental friendliness. Stay on safe zones, protect wildlife habitats, and leave no trace.",
+        land_eco1: "Eco Score Rating (0-100)", land_eco2: "Environmental Zone Maps", land_eco3: "Wildlife Protection Alerts", land_eco4: "Leave No Trace Guidelines",
+        land_community_title: "Join the Dune Riders Community", land_community_desc: "Thousands of sandboarders across the UAE are already tracking their rides, competing for records, and protecting the desert.",
+        land_cstat1: "Active Riders", land_cstat2: "Rides Tracked", land_cstat3: "User Rating",
+        land_cta_title: "Ready to Ride?", land_cta_desc: "Create your free account and start tracking your sandboarding sessions today.", land_cta_signup: "Sign Up Free", land_cta_signin: "Already have an account? Sign In"
     },
     ar: {
         onb_welcome_title: "\u0645\u0631\u062D\u0628\u0627\u064B \u0628\u0643 \u0641\u064A DuneTrack",
@@ -42,7 +61,22 @@ const TRANSLATIONS = {
         onb_feat_bluetooth: "\u0628\u0644\u0648\u062A\u0648\u062B", onb_feat_tilt: "\u0632\u0627\u0648\u064A\u0629 \u0627\u0644\u0645\u064A\u0644", onb_feat_airtime: "\u0632\u0645\u0646 \u0627\u0644\u0637\u064A\u0631\u0627\u0646",
         onb_feat_records: "\u0623\u0631\u0642\u0627\u0645 \u0642\u064A\u0627\u0633\u064A\u0629", onb_feat_trends: "\u0627\u0644\u0627\u062A\u062C\u0627\u0647\u0627\u062A", onb_feat_achieve: "\u0625\u0646\u062C\u0627\u0632\u0627\u062A",
         onb_feat_weather: "\u0627\u0644\u0637\u0642\u0633", onb_feat_eco: "\u0646\u0642\u0627\u0637 \u0628\u064A\u0626\u064A\u0629", onb_feat_zones: "\u0627\u0644\u0645\u0646\u0627\u0637\u0642",
-        onb_skip: "\u062A\u062E\u0637\u064A", onb_next: "\u0627\u0644\u062A\u0627\u0644\u064A", onb_getstarted: "\u0627\u0628\u062F\u0623 \u0627\u0644\u0622\u0646"
+        onb_skip: "\u062A\u062E\u0637\u064A", onb_next: "\u0627\u0644\u062A\u0627\u0644\u064A", onb_getstarted: "\u0627\u0628\u062F\u0623 \u0627\u0644\u0622\u0646",
+        land_badge: "\u062A\u062D\u0644\u064A\u0644\u0627\u062A \u0627\u0644\u062A\u0632\u0644\u062C \u0639\u0644\u0649 \u0627\u0644\u0631\u0645\u0627\u0644 IoT", land_hero_sub: "\u062A\u062A\u0628\u0639 \u0633\u0631\u0639\u062A\u0643. \u0642\u0633 \u0642\u0641\u0632\u0627\u062A\u0643. \u0627\u0642\u0647\u0631 \u0627\u0644\u0643\u062B\u0628\u0627\u0646. \u0631\u0641\u064A\u0642 \u0627\u0644\u062A\u0632\u0644\u062C \u0627\u0644\u0645\u062B\u0627\u0644\u064A \u0628\u062A\u0642\u0646\u064A\u0629 GPS \u0648\u0627\u0644\u0645\u0633\u062A\u0634\u0639\u0631\u0627\u062A \u0627\u0644\u0630\u0643\u064A\u0629.",
+        land_getstarted: "\u0627\u0628\u062F\u0623 \u0627\u0644\u0622\u0646", land_explore: "\u0627\u0633\u062A\u0643\u0634\u0641 \u0627\u0644\u0645\u064A\u0632\u0627\u062A",
+        land_feat_tag: "\u0645\u0627\u0630\u0627 \u0628\u0627\u0644\u062F\u0627\u062E\u0644", land_feat_title: "\u0643\u0644 \u0645\u0627 \u062A\u062D\u062A\u0627\u062C\u0647 \u0644\u0644\u0631\u0643\u0648\u0628 \u0643\u0627\u0644\u0645\u062D\u062A\u0631\u0641\u064A\u0646",
+        land_f1_title: "\u062A\u062A\u0628\u0639 \u0627\u0644\u0633\u0631\u0639\u0629 \u0627\u0644\u0645\u0628\u0627\u0634\u0631", land_f1_desc: "\u0645\u0642\u064A\u0627\u0633 \u0633\u0631\u0639\u0629 GPS \u064A\u0639\u0631\u0636 \u0633\u0631\u0639\u062A\u0643 \u0627\u0644\u062D\u0627\u0644\u064A\u0629 \u0648\u0627\u0644\u0642\u0635\u0648\u0649 \u0648\u0627\u0644\u0645\u0633\u0627\u0641\u0629.",
+        land_f2_title: "\u0645\u0633\u062A\u0634\u0639\u0631\u0627\u062A \u0628\u0644\u0648\u062A\u0648\u062B", land_f2_desc: "\u0627\u0631\u0628\u0637 \u0644\u0648\u062D \u0627\u0644\u062A\u0632\u0644\u062C \u0627\u0644\u0630\u0643\u064A \u0639\u0628\u0631 \u0627\u0644\u0628\u0644\u0648\u062A\u0648\u062B \u0644\u0644\u062D\u0635\u0648\u0644 \u0639\u0644\u0649 \u0628\u064A\u0627\u0646\u0627\u062A \u0627\u0644\u062A\u0633\u0627\u0631\u0639 \u0648\u0627\u0644\u0645\u064A\u0644.",
+        land_f3_title: "\u062A\u062D\u0644\u064A\u0644 \u0627\u0644\u0631\u062D\u0644\u0627\u062A", land_f3_desc: "\u0633\u062C\u0644 \u0643\u0627\u0645\u0644 \u0644\u0644\u0631\u062D\u0644\u0627\u062A \u0648\u0627\u0644\u0623\u0631\u0642\u0627\u0645 \u0627\u0644\u0642\u064A\u0627\u0633\u064A\u0629 \u0648\u0627\u062A\u062C\u0627\u0647\u0627\u062A \u0627\u0644\u0623\u062F\u0627\u0621.",
+        land_f4_title: "\u0625\u0646\u062C\u0627\u0632\u0627\u062A", land_f4_desc: "\u0627\u0641\u062A\u062D \u0634\u0627\u0631\u0627\u062A \u0645\u062B\u0644 \u0634\u064A\u0637\u0627\u0646 \u0627\u0644\u0633\u0631\u0639\u0629 \u0648\u0633\u064A\u062F \u0627\u0644\u0643\u062B\u0628\u0627\u0646.",
+        land_f5_title: "\u0637\u0642\u0633 \u0627\u0644\u0635\u062D\u0631\u0627\u0621", land_f5_desc: "\u0637\u0642\u0633 \u0627\u0644\u0635\u062D\u0631\u0627\u0621 \u0627\u0644\u0645\u0628\u0627\u0634\u0631 \u0648\u0633\u0631\u0639\u0629 \u0627\u0644\u0631\u064A\u0627\u062D \u0648\u0627\u0644\u0631\u0637\u0648\u0628\u0629.",
+        land_f6_title: "\u0645\u062A\u062A\u0628\u0639 \u0628\u064A\u0626\u064A", land_f6_desc: "\u0627\u0631\u0643\u0628 \u0628\u0645\u0633\u0624\u0648\u0644\u064A\u0629 \u0645\u0639 \u0646\u0642\u0627\u0637 \u0627\u0644\u0628\u064A\u0626\u0629 \u0648\u0645\u0646\u0627\u0637\u0642 \u0627\u0644\u0631\u0643\u0648\u0628 \u0627\u0644\u0622\u0645\u0646\u0629.",
+        land_action_tag: "\u0623\u062F\u0627\u0621 \u0645\u0628\u0627\u0634\u0631", land_action_title: "\u062A\u062A\u0628\u0639 \u0643\u0644 \u0631\u062D\u0644\u0629 \u0645\u0628\u0627\u0634\u0631\u0629", land_action_desc: "\u0634\u0627\u0647\u062F \u0633\u0631\u0639\u062A\u0643 \u0648\u0645\u0633\u0627\u0641\u062A\u0643 \u062A\u062A\u062D\u062F\u062B \u0645\u0628\u0627\u0634\u0631\u0629 \u0623\u062B\u0646\u0627\u0621 \u0627\u0644\u062A\u0632\u0644\u062C.",
+        land_board_tag: "\u0623\u062C\u0647\u0632\u0629 IoT", land_board_title: "\u0645\u0633\u062A\u0634\u0639\u0631\u0627\u062A \u0644\u0648\u062D \u0627\u0644\u062A\u0632\u0644\u062C \u0627\u0644\u0630\u0643\u064A", land_board_desc: "\u0644\u0648\u062D \u0627\u0644\u062A\u0632\u0644\u062C \u0627\u0644\u0630\u0643\u064A \u0645\u0639 \u0645\u0642\u064A\u0627\u0633 \u062A\u0633\u0627\u0631\u0639 \u0648\u062C\u064A\u0631\u0648\u0633\u0643\u0648\u0628 \u0648\u0628\u0644\u0648\u062A\u0648\u062B.",
+        land_map_title: "\u0627\u0633\u062A\u0643\u0634\u0641 \u0643\u062B\u0628\u0627\u0646 \u0627\u0644\u0625\u0645\u0627\u0631\u0627\u062A", land_map_desc: "\u0645\u0646 \u0627\u0644\u0628\u062F\u0627\u064A\u0631 \u0625\u0644\u0649 \u0644\u064A\u0648\u0627\u060C \u0627\u0643\u062A\u0634\u0641 \u0623\u0641\u0636\u0644 \u0645\u0648\u0627\u0642\u0639 \u0627\u0644\u062A\u0632\u0644\u062C.",
+        land_eco_tag: "\u0627\u062D\u0645\u0650 \u0643\u062B\u0628\u0627\u0646\u0646\u0627", land_eco_title: "\u0627\u0631\u0643\u0628 \u0628\u0645\u0633\u0624\u0648\u0644\u064A\u0629", land_eco_desc: "\u064A\u0631\u0627\u0642\u0628 \u0645\u062A\u062A\u0628\u0639 \u0627\u0644\u0628\u064A\u0626\u0629 \u062A\u0623\u062B\u064A\u0631 \u0631\u0643\u0648\u0628\u0643 \u0648\u064A\u0642\u064A\u0651\u0645 \u0635\u062F\u0627\u0642\u062A\u0643 \u0644\u0644\u0628\u064A\u0626\u0629.",
+        land_community_title: "\u0627\u0646\u0636\u0645 \u0644\u0645\u062C\u062A\u0645\u0639 \u0631\u0627\u0643\u0628\u064A \u0627\u0644\u0643\u062B\u0628\u0627\u0646", land_community_desc: "\u0622\u0644\u0627\u0641 \u0627\u0644\u0645\u062A\u0632\u0644\u062C\u064A\u0646 \u064A\u062A\u062A\u0628\u0639\u0648\u0646 \u0631\u062D\u0644\u0627\u062A\u0647\u0645 \u0648\u064A\u062A\u0646\u0627\u0641\u0633\u0648\u0646 \u0639\u0644\u0649 \u0627\u0644\u0623\u0631\u0642\u0627\u0645 \u0627\u0644\u0642\u064A\u0627\u0633\u064A\u0629.",
+        land_cta_title: "\u062C\u0627\u0647\u0632 \u0644\u0644\u0631\u0643\u0648\u0628\u061F", land_cta_desc: "\u0623\u0646\u0634\u0626 \u062D\u0633\u0627\u0628\u0643 \u0627\u0644\u0645\u062C\u0627\u0646\u064A \u0648\u0627\u0628\u062F\u0623 \u062A\u062A\u0628\u0639 \u062C\u0644\u0633\u0627\u062A\u0643 \u0627\u0644\u064A\u0648\u0645.", land_cta_signup: "\u0633\u062C\u0644 \u0645\u062C\u0627\u0646\u0627\u064B", land_cta_signin: "\u0644\u062F\u064A\u0643 \u062D\u0633\u0627\u0628\u061F \u0633\u062C\u0644 \u062F\u062E\u0648\u0644"
     },
     fr: {
         onb_welcome_title: "Bienvenue sur DuneTrack",
@@ -98,15 +132,11 @@ const TRANSLATIONS = {
 };
 
 let currentLang = 'en';
-let currentSlide = 0;
-const TOTAL_SLIDES = 5;
 
 function setLang(lang) {
     currentLang = lang;
-    document.querySelectorAll('.onb-lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
-    // RTL for Arabic
+    document.querySelectorAll('.land-lang').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-    // Update all translatable elements
     const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.dataset.i18n;
@@ -115,44 +145,16 @@ function setLang(lang) {
     localStorage.setItem('dunetrack_lang', lang);
 }
 
-function nextSlide() {
-    if (currentSlide >= TOTAL_SLIDES - 1) {
-        skipOnboarding();
-        return;
-    }
-    const slides = document.querySelectorAll('.onb-slide');
-    const dots = document.querySelectorAll('.onb-dot');
-    slides[currentSlide].classList.remove('active');
-    slides[currentSlide].classList.add('exit-left');
-    currentSlide++;
-    slides[currentSlide].classList.remove('exit-left');
-    slides[currentSlide].classList.add('active');
-    dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
-    // On last slide change button text
-    const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
-    if (currentSlide === TOTAL_SLIDES - 1) {
-        document.getElementById('onb-next-text').textContent = t.onb_getstarted || 'Get Started';
-        document.getElementById('onb-skip').style.visibility = 'hidden';
-    }
-    // Remove exit-left after animation
-    setTimeout(() => {
-        slides.forEach(s => { if (!s.classList.contains('active')) s.classList.remove('exit-left'); });
-    }, 500);
-}
-
 function skipOnboarding() {
-    document.getElementById('onboarding').classList.remove('active');
+    document.getElementById('landing').classList.remove('active');
     localStorage.setItem('dunetrack_onboarded', '1');
     showAuthScreen();
 }
 
 function showOnboarding() {
-    document.getElementById('onboarding').classList.add('active');
-    // Load saved language
+    document.getElementById('landing').classList.add('active');
     const savedLang = localStorage.getItem('dunetrack_lang');
-    if (savedLang && TRANSLATIONS[savedLang]) {
-        setLang(savedLang);
-    }
+    if (savedLang && TRANSLATIONS[savedLang]) setLang(savedLang);
 }
 
 // ---- AUTH STATE ----
