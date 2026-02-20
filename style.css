@@ -1125,6 +1125,84 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
     font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.7; margin: 0;
 }
 
+/* ---- NEVER GET LOST SECTION ---- */
+.land-tag-blue { background: rgba(0,191,255,0.1); border-color: rgba(0,191,255,0.2); color: #00BFFF; }
+.land-lost-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 8px; }
+.land-lost-hero-card {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, rgba(0,191,255,0.08), rgba(255,215,0,0.06));
+    border: 1px solid rgba(0,191,255,0.15);
+    border-radius: 20px; padding: 36px 32px; position: relative; overflow: hidden;
+}
+.land-lost-hero-card::before {
+    content: ''; position: absolute; top: -40px; right: -40px; width: 160px; height: 160px;
+    background: radial-gradient(circle, rgba(0,191,255,0.12) 0%, transparent 70%);
+    border-radius: 50%; pointer-events: none;
+}
+.land-lost-icon-big { font-size: 48px; display: block; margin-bottom: 16px; }
+.land-lost-hero-card h3 {
+    font-family: 'Inter', sans-serif; font-size: 22px; font-weight: 800; color: #fff;
+    margin: 0 0 12px; line-height: 1.3;
+}
+.land-lost-hero-card p {
+    font-family: 'Inter', sans-serif; font-size: 14px; color: rgba(255,255,255,0.6);
+    line-height: 1.8; margin: 0; max-width: 700px;
+}
+.land-lost-card {
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px; padding: 28px 24px; transition: all 0.3s;
+}
+.land-lost-card:hover { background: rgba(255,255,255,0.05); border-color: rgba(0,191,255,0.15); transform: translateY(-3px); }
+.land-lost-icon { font-size: 32px; display: block; margin-bottom: 12px; }
+.land-lost-card h4 {
+    font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700; color: #fff;
+    margin: 0 0 10px;
+}
+.land-lost-card p {
+    font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,255,255,0.5);
+    line-height: 1.7; margin: 0;
+}
+.land-lost-highlight {
+    display: inline; color: #00BFFF; font-weight: 600;
+}
+.land-lost-bottom {
+    display: flex; justify-content: center; gap: 40px; margin-top: 32px;
+    padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06);
+}
+.land-lost-stat { display: flex; align-items: center; gap: 10px; }
+.land-lost-stat-icon { font-size: 24px; }
+.land-lost-stat span {
+    font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,255,255,0.5);
+    line-height: 1.4;
+}
+.land-lost-stat strong { color: #fff; font-weight: 700; display: block; font-size: 15px; }
+
+/* ---- WALKTHROUGH SECTION ---- */
+.land-walkthrough { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+.land-walk-item {
+    display: flex; gap: 24px; align-items: flex-start;
+    padding: 28px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: all 0.3s;
+}
+.land-walk-item:last-child { border-bottom: none; }
+.land-walk-item:hover { padding-left: 8px; }
+.land-walk-num {
+    flex-shrink: 0; width: 48px; height: 48px; border-radius: 14px;
+    background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,107,53,0.1));
+    border: 1px solid rgba(255,215,0,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 800; color: #FFD700;
+}
+.land-walk-content h4 {
+    font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 700; color: #fff;
+    margin: 0 0 8px;
+}
+.land-walk-content h4 span { color: rgba(255,255,255,0.35); font-weight: 500; margin-left: 8px; font-size: 13px; }
+.land-walk-content p {
+    font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,255,255,0.5);
+    line-height: 1.8; margin: 0;
+}
+
 /* ---- Leaflet dark theme overrides ---- */
 .leaflet-container { background: #0a0a0e; }
 .leaflet-tile-pane { filter: brightness(0.7) contrast(1.1) saturate(0.8); }
@@ -1146,10 +1224,20 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
     .land-about-content { grid-template-columns: 1fr; }
     .land-safety-grid { grid-template-columns: 1fr; }
     .land-locations-below { grid-template-columns: 1fr; }
+    .land-lost-grid { grid-template-columns: 1fr; }
+    .land-lost-hero-card { padding: 28px 20px; }
+    .land-lost-hero-card h3 { font-size: 19px; }
+    .land-lost-bottom { flex-direction: column; gap: 16px; align-items: center; }
+    .land-walk-item { gap: 16px; }
+    .land-walk-num { width: 40px; height: 40px; font-size: 17px; border-radius: 12px; }
+    .land-walk-content h4 { font-size: 15px; }
+    .land-walk-content h4 span { display: block; margin-left: 0; margin-top: 2px; }
 }
 @media (max-width: 480px) {
     .leaflet-map-container { height: 250px; }
     .land-safety-grid { grid-template-columns: 1fr; }
+    .land-lost-hero-card h3 { font-size: 17px; }
+    .land-lost-icon-big { font-size: 36px; }
 }
 
 /* RTL */
