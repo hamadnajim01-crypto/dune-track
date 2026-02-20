@@ -46,10 +46,14 @@
                     <span>DUNE<span>TRACK</span></span>
                 </div>
                 <div class="land-nav-links">
-                    <a href="#land-features" class="land-link">Features</a>
-                    <a href="#land-board" class="land-link">Smart Board</a>
-                    <a href="#land-how" class="land-link">How It Works</a>
-                    <a href="#land-eco" class="land-link">Eco</a>
+                    <a href="#land-about" class="land-link">ABOUT</a>
+                    <a href="#land-features" class="land-link">FEATURES</a>
+                    <a href="#land-ecosystem" class="land-link">ECOSYSTEM</a>
+                    <a href="#land-sustainability" class="land-link">SUSTAINABILITY</a>
+                    <a href="#land-roadmap" class="land-link">ROADMAP</a>
+                    <a href="#land-contact" class="land-link">CONTACT</a>
+                </div>
+                <div class="land-nav-right">
                     <div class="land-lang-sel">
                         <button class="land-lang active" data-lang="en" onclick="setLang('en')">EN</button>
                         <button class="land-lang" data-lang="ar" onclick="setLang('ar')">AR</button>
@@ -57,8 +61,26 @@
                         <button class="land-lang" data-lang="es" onclick="setLang('es')">ES</button>
                         <button class="land-lang" data-lang="hi" onclick="setLang('hi')">HI</button>
                     </div>
+                    <button class="land-cta-nav" onclick="goToSignup()" data-i18n="land_getstarted">GET STARTED</button>
                 </div>
-                <button class="land-cta-nav" onclick="skipOnboarding()" data-i18n="land_getstarted">Get Started</button>
+                <button class="land-mobile-toggle" onclick="toggleLandingMenu()">&#x2630;</button>
+            </div>
+            <!-- Mobile menu dropdown -->
+            <div class="land-mobile-menu" id="land-mobile-menu">
+                <a href="#land-about" class="land-mobile-link" onclick="closeLandingMenu()">ABOUT</a>
+                <a href="#land-features" class="land-mobile-link" onclick="closeLandingMenu()">FEATURES</a>
+                <a href="#land-ecosystem" class="land-mobile-link" onclick="closeLandingMenu()">ECOSYSTEM</a>
+                <a href="#land-sustainability" class="land-mobile-link" onclick="closeLandingMenu()">SUSTAINABILITY</a>
+                <a href="#land-roadmap" class="land-mobile-link" onclick="closeLandingMenu()">ROADMAP</a>
+                <a href="#land-contact" class="land-mobile-link" onclick="closeLandingMenu()">CONTACT</a>
+                <div class="land-mobile-lang">
+                    <button class="land-lang active" data-lang="en" onclick="setLang('en')">EN</button>
+                    <button class="land-lang" data-lang="ar" onclick="setLang('ar')">AR</button>
+                    <button class="land-lang" data-lang="fr" onclick="setLang('fr')">FR</button>
+                    <button class="land-lang" data-lang="es" onclick="setLang('es')">ES</button>
+                    <button class="land-lang" data-lang="hi" onclick="setLang('hi')">HI</button>
+                </div>
+                <button class="land-cta-nav land-mobile-cta" onclick="goToSignup()">GET STARTED</button>
             </div>
         </nav>
 
@@ -77,7 +99,7 @@
                 <p class="land-hero-tagline">PRO</p>
                 <p class="land-hero-sub" data-i18n="land_hero_sub">Track your speed. Measure your jumps. Conquer the dunes. The ultimate sandboarding companion powered by real-time GPS, smart sensors, and Bluetooth IoT.</p>
                 <div class="land-hero-btns">
-                    <button class="land-btn-primary" onclick="skipOnboarding()" data-i18n="land_getstarted">Get Started</button>
+                    <button class="land-btn-primary" onclick="goToSignup()" data-i18n="land_getstarted">Get Started</button>
                     <a href="#land-features" class="land-btn-secondary" data-i18n="land_explore">Explore Features</a>
                 </div>
                 <div class="land-hero-techs">
@@ -142,8 +164,8 @@
             </div>
         </section>
 
-        <!-- ====== ACTION SHOWCASE - Sandboarder ====== -->
-        <section class="land-showcase">
+        <!-- ====== ACTION SHOWCASE - Sandboarder (ABOUT) ====== -->
+        <section class="land-showcase" id="land-about">
             <div class="land-showcase-img">
                 <img src="https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?w=1200&q=80" alt="Sandboarder in action at sunset">
                 <div class="land-showcase-overlay"></div>
@@ -163,8 +185,8 @@
             </div>
         </section>
 
-        <!-- ====== HOW IT WORKS ====== -->
-        <section class="land-section" id="land-how">
+        <!-- ====== HOW IT WORKS (ROADMAP) ====== -->
+        <section class="land-section" id="land-roadmap">
             <div class="land-section-inner">
                 <div class="land-section-tag">How It Works</div>
                 <h2 class="land-section-title">From Setup to Shredding in 3 Steps</h2>
@@ -217,8 +239,8 @@
             </div>
         </section>
 
-        <!-- ====== TECHNOLOGY STACK ====== -->
-        <section class="land-section" id="land-tech">
+        <!-- ====== TECHNOLOGY STACK (ECOSYSTEM) ====== -->
+        <section class="land-section" id="land-ecosystem">
             <div class="land-section-inner">
                 <div class="land-section-tag">Technology</div>
                 <h2 class="land-section-title">Built With Cutting-Edge Tech</h2>
@@ -328,8 +350,8 @@
             </div>
         </section>
 
-        <!-- ====== ECO SECTION ====== -->
-        <section class="land-section" id="land-eco">
+        <!-- ====== ECO SECTION (SUSTAINABILITY) ====== -->
+        <section class="land-section" id="land-sustainability">
             <div class="land-section-inner">
                 <div class="land-split land-split-reverse">
                     <div class="land-split-text">
@@ -494,15 +516,15 @@
                 <h2 data-i18n="land_cta_title">Ready to Ride?</h2>
                 <p data-i18n="land_cta_desc">Create your free account and start tracking your sandboarding sessions today.</p>
                 <div class="land-final-btns">
-                    <button class="land-btn-primary land-btn-big" onclick="skipOnboarding()" data-i18n="land_cta_signup">Sign Up Free</button>
-                    <button class="land-btn-outline" onclick="skipOnboarding()" data-i18n="land_cta_signin">Already have an account? Sign In</button>
+                    <button class="land-btn-primary land-btn-big" onclick="goToSignup()" data-i18n="land_cta_signup">Sign Up Free</button>
+                    <button class="land-btn-outline" onclick="goToSignin()" data-i18n="land_cta_signin">Already have an account? Sign In</button>
                 </div>
                 <p class="land-final-note">Free forever. No credit card. No ads. Just ride.</p>
             </div>
         </section>
 
-        <!-- ====== FOOTER ====== -->
-        <footer class="land-footer">
+        <!-- ====== FOOTER (CONTACT) ====== -->
+        <footer class="land-footer" id="land-contact">
             <div class="land-footer-inner">
                 <div class="land-footer-logo">
                     <svg viewBox="0 0 80 30" width="30" height="11"><path d="M5 20 Q40 0 75 20" stroke="url(#ftGrad)" stroke-width="4" fill="none" stroke-linecap="round"/><defs><linearGradient id="ftGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#FFD700"/><stop offset="100%" stop-color="#FF6B35"/></linearGradient></defs></svg>

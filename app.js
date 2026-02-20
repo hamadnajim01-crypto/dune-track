@@ -150,6 +150,32 @@ function skipOnboarding() {
     showAuthScreen();
 }
 
+// "Get Started" → goes to Sign UP form
+function goToSignup() {
+    document.getElementById('landing').classList.remove('active');
+    localStorage.setItem('dunetrack_onboarded', '1');
+    showAuthScreen();
+    showSignup(); // Show signup form by default
+}
+
+// "Already have an account? Sign In" → goes to Sign IN form
+function goToSignin() {
+    document.getElementById('landing').classList.remove('active');
+    localStorage.setItem('dunetrack_onboarded', '1');
+    showAuthScreen();
+    showLogin(); // Show login form
+}
+
+// Landing page mobile menu
+function toggleLandingMenu() {
+    const menu = document.getElementById('land-mobile-menu');
+    if (menu) menu.classList.toggle('open');
+}
+function closeLandingMenu() {
+    const menu = document.getElementById('land-mobile-menu');
+    if (menu) menu.classList.remove('open');
+}
+
 function showOnboarding() {
     document.getElementById('landing').classList.add('active');
     const savedLang = localStorage.getItem('dunetrack_lang');
