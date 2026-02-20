@@ -474,12 +474,9 @@ window.addEventListener('load', () => {
                 if (checkAuth()) {
                     // Already logged in - go straight to app
                     enterApp();
-                } else if (!localStorage.getItem('dunetrack_onboarded')) {
-                    // First time user - show onboarding
-                    showOnboarding();
                 } else {
-                    // Returning user, not logged in - show auth screen
-                    showAuthScreen();
+                    // Not logged in - always show landing page first
+                    showOnboarding();
                 }
             }, 400);
         }
