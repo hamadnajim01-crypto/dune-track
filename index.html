@@ -1009,6 +1009,80 @@
                     <!-- Populated by JS -->
                 </div>
 
+                <!-- Quick Safety Tips -->
+                <div class="section-header">
+                    <h3>Safety Tips</h3>
+                    <span class="section-badge">&#x1F6E1;&#xFE0F; Essential</span>
+                </div>
+                <div class="dash-safety-tips">
+                    <div class="dash-safety-card">
+                        <div class="dash-safety-icon">&#x1F4A7;</div>
+                        <div class="dash-safety-text">
+                            <strong>Stay Hydrated</strong>
+                            <span>Bring 2+ liters of water. Desert heat causes rapid dehydration even when you don't feel thirsty.</span>
+                        </div>
+                    </div>
+                    <div class="dash-safety-card">
+                        <div class="dash-safety-icon">&#x1F9E2;</div>
+                        <div class="dash-safety-text">
+                            <strong>Wear Protection</strong>
+                            <span>Helmet, sunglasses, and sunscreen (SPF 50+). The sand can cause burns and abrasions at speed.</span>
+                        </div>
+                    </div>
+                    <div class="dash-safety-card">
+                        <div class="dash-safety-icon">&#x23F0;</div>
+                        <div class="dash-safety-text">
+                            <strong>Ride at the Right Time</strong>
+                            <span>Best hours: 6-9 AM or 4-6 PM. Avoid midday — sand temperatures can exceed 70°C.</span>
+                        </div>
+                    </div>
+                    <div class="dash-safety-card">
+                        <div class="dash-safety-icon">&#x1F4CD;</div>
+                        <div class="dash-safety-text">
+                            <strong>Share Your Location</strong>
+                            <span>Tell someone where you're riding. DuneTrack's GPS map shows your exact position at all times.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- What You Can Do -->
+                <div class="section-header">
+                    <h3>What You Can Do</h3>
+                    <span class="section-badge">&#x26A1; Features</span>
+                </div>
+                <div class="dash-features-grid">
+                    <div class="dash-feature-card" onclick="switchTab('live')">
+                        <div class="dash-feature-icon">&#x1F3C4;</div>
+                        <strong>Track a Ride</strong>
+                        <span>Start a live session with GPS speed, distance, airtime, and tilt angle tracking in real-time.</span>
+                    </div>
+                    <div class="dash-feature-card" onclick="switchTab('history')">
+                        <div class="dash-feature-icon">&#x1F4CA;</div>
+                        <strong>View Ride History</strong>
+                        <span>See all your past rides with full stats: duration, distance, max speed, and date.</span>
+                    </div>
+                    <div class="dash-feature-card" onclick="switchTab('map')">
+                        <div class="dash-feature-icon">&#x1F5FA;&#xFE0F;</div>
+                        <strong>GPS Map & Eco</strong>
+                        <span>See your live position on the map. View eco score and environmental zone guides.</span>
+                    </div>
+                    <div class="dash-feature-card" onclick="switchTab('stats')">
+                        <div class="dash-feature-icon">&#x1F4C8;</div>
+                        <strong>Analytics</strong>
+                        <span>Weekly trends, personal records, achievement badges, and performance charts.</span>
+                    </div>
+                    <div class="dash-feature-card" onclick="switchTab('live')">
+                        <div class="dash-feature-icon">&#x1F4F6;</div>
+                        <strong>Connect Bluetooth</strong>
+                        <span>Pair a BLE sandboard sensor for precise acceleration, tilt, and G-force data.</span>
+                    </div>
+                    <div class="dash-feature-card" onclick="switchTab('settings')">
+                        <div class="dash-feature-icon">&#x1F310;</div>
+                        <strong>5 Languages</strong>
+                        <span>Switch between English, Arabic, French, Spanish, and Hindi in Settings.</span>
+                    </div>
+                </div>
+
                 <!-- Quick Actions -->
                 <div class="quick-actions">
                     <button class="quick-btn primary" onclick="switchTab('live')">
@@ -1116,6 +1190,92 @@
                     <span id="start-btn-text">START SESSION</span>
                 </button>
             </section>
+
+            <!-- ====== PRE-RIDE SAFETY BRIEFING OVERLAY ====== -->
+            <div class="safety-overlay" id="safety-overlay" style="display:none;">
+                <div class="safety-modal">
+                    <div class="safety-modal-header">
+                        <div class="safety-modal-icon">&#x1F6E1;&#xFE0F;</div>
+                        <h2>Pre-Ride Safety Briefing</h2>
+                        <p>Review these safety guidelines before you start riding. Your safety is our top priority.</p>
+                    </div>
+
+                    <div class="safety-checklist" id="safety-checklist">
+                        <label class="safety-check-item">
+                            <input type="checkbox" class="safety-checkbox" onchange="updateSafetyProgress()">
+                            <span class="safety-check-mark"></span>
+                            <div class="safety-check-info">
+                                <strong>&#x1F4F1; Phone Charged Above 20%</strong>
+                                <span>Your phone's GPS and sensors use battery. Make sure you have enough charge for your session. Bring a portable battery pack if possible.</span>
+                            </div>
+                        </label>
+
+                        <label class="safety-check-item">
+                            <input type="checkbox" class="safety-checkbox" onchange="updateSafetyProgress()">
+                            <span class="safety-check-mark"></span>
+                            <div class="safety-check-info">
+                                <strong>&#x1F4A7; Carrying Water (2+ Liters)</strong>
+                                <span>The UAE desert can reach extreme temperatures. Dehydration is the #1 risk. Always carry at least 2 liters of water per person, even for short sessions.</span>
+                            </div>
+                        </label>
+
+                        <label class="safety-check-item">
+                            <input type="checkbox" class="safety-checkbox" onchange="updateSafetyProgress()">
+                            <span class="safety-check-mark"></span>
+                            <div class="safety-check-info">
+                                <strong>&#x2600;&#xFE0F; Wearing Sun Protection</strong>
+                                <span>Apply SPF 50+ sunscreen. Wear UV-protective sunglasses and a hat. The UV index in the UAE desert can exceed 11 during peak hours.</span>
+                            </div>
+                        </label>
+
+                        <label class="safety-check-item">
+                            <input type="checkbox" class="safety-checkbox" onchange="updateSafetyProgress()">
+                            <span class="safety-check-mark"></span>
+                            <div class="safety-check-info">
+                                <strong>&#x1F9E2; Wearing Helmet & Protection</strong>
+                                <span>A helmet protects against head injuries from falls. Knee pads, elbow pads, and gloves are strongly recommended, especially for beginners.</span>
+                            </div>
+                        </label>
+
+                        <label class="safety-check-item">
+                            <input type="checkbox" class="safety-checkbox" onchange="updateSafetyProgress()">
+                            <span class="safety-check-mark"></span>
+                            <div class="safety-check-info">
+                                <strong>&#x1F465; Someone Knows Your Location</strong>
+                                <span>Always tell a friend or family member where you're riding and when you plan to return. Share your live GPS position if possible.</span>
+                            </div>
+                        </label>
+
+                        <label class="safety-check-item">
+                            <input type="checkbox" class="safety-checkbox" onchange="updateSafetyProgress()">
+                            <span class="safety-check-mark"></span>
+                            <div class="safety-check-info">
+                                <strong>&#x1F697; Vehicle Parked on Hard Ground</strong>
+                                <span>Never park on soft sand — your car can sink. Use a 4WD vehicle, deflate tires for desert driving, and re-inflate before returning to the road.</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="safety-progress-bar">
+                        <div class="safety-progress-fill" id="safety-progress-fill" style="width:0%"></div>
+                    </div>
+                    <p class="safety-progress-text" id="safety-progress-text">Check all 6 items to continue (0/6)</p>
+
+                    <div class="safety-weather-warn" id="safety-weather-warn">
+                        <span class="safety-warn-icon">&#x1F321;&#xFE0F;</span>
+                        <span id="safety-weather-msg">Checking current desert conditions...</span>
+                    </div>
+
+                    <div class="safety-modal-actions">
+                        <button class="safety-btn-skip" onclick="closeSafetyBriefing(false)">Go Back</button>
+                        <button class="safety-btn-start" id="safety-start-btn" disabled onclick="closeSafetyBriefing(true)">
+                            <span>&#x25B6;</span> I'm Ready — Start Ride
+                        </button>
+                    </div>
+
+                    <p class="safety-disclaimer">DuneTrack is a tracking tool, not a safety device. Always exercise personal judgment and follow local regulations. Ride at your own risk.</p>
+                </div>
+            </div>
 
             <!-- HISTORY SCREEN -->
             <section id="screen-history" class="tab-screen">

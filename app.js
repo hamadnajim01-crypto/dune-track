@@ -1254,8 +1254,81 @@ function toggleSession() {
     if (session.active) {
         stopSession();
     } else {
-        startSession();
+        showSafetyBriefing();
     }
+}
+
+// ---- PRE-RIDE SAFETY BRIEFING ----
+function showSafetyBriefing() {
+    const overlay = document.getElementById('safety-overlay');
+    if (!overlay) { startSession(); return; }
+
+    // Reset checkboxes
+    const checkboxes = overlay.querySelectorAll('.safety-checkbox');
+    checkboxes.forEach(cb => cb.checked = false);
+    updateSafetyProgress();
+
+    // Show weather condition in the safety modal
+    updateSafetyWeather();
+
+    overlay.style.display = 'flex';
+}
+
+function updateSafetyWeather() {
+    const msgEl = document.getElementById('safety-weather-msg');
+    const warnEl = document.getElementById('safety-weather-warn');
+    if (!msgEl || !warnEl) return;
+
+    if (weather.data && weather.data.current) {
+        const temp = Math.round(weather.data.current.temperature_2m);
+        const uv = weather.data.current.uv_index;
+        const wind = Math.round(weather.data.current.wind_speed_10m);
+        const humidity = weather.data.current.relative_humidity_2m;
+
+        if (temp > 45) {
+            msgEl.innerHTML = `<strong>EXTREME HEAT WARNING:</strong> Current temperature is ${temp}°C. This is dangerously hot. Consider postponing your ride to early morning or evening.`;
+            warnEl.classList.remove('safe');
+        } else if (temp > 38) {
+            msgEl.innerHTML = `<strong>Heat advisory:</strong> ${temp}°C with UV index ${uv}. Drink water frequently, take breaks in shade, and watch for signs of heat exhaustion.`;
+            warnEl.classList.remove('safe');
+        } else {
+            msgEl.innerHTML = `<strong>Conditions look good:</strong> ${temp}°C, wind ${wind} km/h, humidity ${humidity}%. Stay hydrated and have a great ride!`;
+            warnEl.classList.add('safe');
+        }
+    } else {
+        msgEl.textContent = 'Weather data unavailable. Check conditions manually before riding. Stay hydrated regardless of temperature.';
+        warnEl.classList.remove('safe');
+    }
+}
+
+function updateSafetyProgress() {
+    const checkboxes = document.querySelectorAll('.safety-checkbox');
+    const checked = document.querySelectorAll('.safety-checkbox:checked').length;
+    const total = checkboxes.length;
+
+    const fill = document.getElementById('safety-progress-fill');
+    const text = document.getElementById('safety-progress-text');
+    const btn = document.getElementById('safety-start-btn');
+
+    if (fill) {
+        fill.style.width = (checked / total * 100) + '%';
+        if (checked === total) fill.classList.add('complete');
+        else fill.classList.remove('complete');
+    }
+    if (text) {
+        text.textContent = checked === total
+            ? 'All safety checks complete — you are ready to ride!'
+            : `Check all ${total} items to continue (${checked}/${total})`;
+    }
+    if (btn) {
+        btn.disabled = checked < total;
+    }
+}
+
+function closeSafetyBriefing(startRide) {
+    const overlay = document.getElementById('safety-overlay');
+    if (overlay) overlay.style.display = 'none';
+    if (startRide) startSession();
 }
 
 async function startSession() {
