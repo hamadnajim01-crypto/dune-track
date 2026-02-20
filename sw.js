@@ -1,5 +1,5 @@
 // DuneTrack PRO - Service Worker
-const CACHE_NAME = 'dunetrack-v8';
+const CACHE_NAME = 'dunetrack-v9';
 
 // Install: cache all static assets using relative paths
 self.addEventListener('install', (event) => {
