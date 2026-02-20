@@ -150,20 +150,21 @@ function skipOnboarding() {
     showAuthScreen();
 }
 
-// "Get Started" → goes to Sign UP form
+// "Get Started" → goes to Sign UP form (signup shows FIRST, not sign in)
 function goToSignup() {
     document.getElementById('landing').classList.remove('active');
     localStorage.setItem('dunetrack_onboarded', '1');
+    // Set signup form visible BEFORE showing the screen
+    showSignup();
     showAuthScreen();
-    showSignup(); // Show signup form by default
 }
 
 // "Already have an account? Sign In" → goes to Sign IN form
 function goToSignin() {
     document.getElementById('landing').classList.remove('active');
     localStorage.setItem('dunetrack_onboarded', '1');
+    showLogin();
     showAuthScreen();
-    showLogin(); // Show login form
 }
 
 // Landing page mobile menu

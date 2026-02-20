@@ -1,5 +1,5 @@
 // DuneTrack PRO - Service Worker
-const CACHE_NAME = 'dunetrack-v3';
+const CACHE_NAME = 'dunetrack-v4';
 
 // Install: cache all static assets using relative paths
 self.addEventListener('install', (event) => {
@@ -45,17 +45,12 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
-    // For local assets: cache first, then network
+    // For local assets: network first, then cache (ensures updates show immediately)
     event.respondWith(
-        caches.match(event.request).then((cached) => {
-            const fetched = fetch(event.request).then((response) => {
-                // Update cache with fresh version
-                const clone = response.clone();
-                caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
-                return response;
-            }).catch(() => cached);
-
-            return cached || fetched;
-        })
+        fetch(event.request).then((response) => {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+            return response;
+        }).catch(() => caches.match(event.request))
     );
 });
